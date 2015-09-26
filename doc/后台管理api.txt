@@ -1,0 +1,312 @@
+BASE_URL:http://115.28.34.72:8080/OA
+
+API设计
+
+URL：“/user/regist”
+Method:POST
+    Request : {
+      "charactar":1或是2,  1代表本公司  2代表业务伙伴  int类型
+      "username":"test",  String类型
+      "password":"test"   String类型
+    }
+    URL params:null
+    Response:
+    {
+    "status": 0,
+    "body": null
+    "message":"注册成功"
+    }
+
+查询员工信息（分页查询）
+URL：“/employee/query"
+Method:GET
+Response：  
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 11,
+            "userId": 13,
+            "realname": "孟琦",
+            "empnumber": "2354",
+            "address": "公司总部",
+            "sex": "女",
+            "birthday": 791913600000,
+            "mobilephone": "345",
+            "fixedphone": "235434",
+            "email": "2452106414@qq.com",
+            "positionId": 1,
+            "departmentId": 3,
+            "grade": 5,
+            "headimg": "image.jpg",
+            "note": "工作认真负责",
+            "createDate": 1440430495000,
+            "lastModifyDate": 1440430498000
+        },
+	    "message": null
+}
+
+
+
+
+添加员工
+//（在注册页面选择员工，跳转到此页面注册添加）
+URL:“/employee/addemployee”
+Method=POST
+Request：{ ”*“ 表示必填
+      *“userId”：根据之前用户注册界面的ID将其返回到此页面 
+	  *"realname"：String类型    
+         “adress” ： String类型 家庭住址		  
+	  *“empnumber”：Ingeter类型 员工编号
+	  *”sex“：      String类型，性别（男/女）
+	   ”birthday“： Date类型，生日
+	  *”mobilephone“：Integer类型 移动电话
+	   ”fixedphone“：Integer类型 固定电话
+	  * “email”： String 类型  邮箱
+	  * ”deptname“： String类型 部门（以下拉框的形式选择）
+	  * ”positionname“：String 类型 职位（以下拉框的形式选择）
+	    “note”：       String类型 简介
+	  * “headimg”：    String类型 上传头像
+      
+}
+URL params:null
+    Response:
+	{
+    "status": 0,
+    "body": null
+	}
+	
+	
+更新员工信息
+//
+URL：“/employee/employeeModify“
+Method=POST;
+Request：{
+ * “id”：将当前员工的注册id返回，不可更改；
+   “userId”：Integer 类型
+    "realname"：String类型   
+    “adress” ： String类型 家庭住址	
+	 empnumber”：Ingeter类型 员工编号
+	 ”sex“：      String类型，性别（男/女）
+	 ”birthday“： Date类型，生日
+	  ”mobilephone“：Integer类型 移动电话
+	   ”fixedphone“：Integer类型 固定电话
+	   “email”： String 类型  邮箱
+	   ”deptname“： String类型 部门（以下拉框的形式选择）
+	   ”positionname“：String 类型 职位（以下拉框的形式选择）
+	    “note”：       String类型 简介
+	   “headimg”：    String类型 修改头像
+ }
+ URL params:null
+    Response:
+	{
+    "status": 0,
+    "body": null
+	}
+	
+	
+删除员工
+URL:"/employee/delete/id"
+Method=DELETE;
+Request:null
+URL params:{
+    "id":11
+  }
+   Response:
+   { "status": 0,
+      "body": null
+   }
+	
+查询合作伙伴信息（分页查询）
+URL：“/partner/query"
+Method:GET
+Response：
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 1,
+            "userId": 22,
+            "realname": "王健林",
+            "address": "北京",
+            "mobilephone": "235235",
+            "fixedphone": "234234",
+            "email": "234@qq.com",
+            "grade": 10,
+            "position": "董事长",
+            "companyId": 1,
+            "note": "合作愉快",
+            "headimg": "big.jpg",
+            "createDate": 1440864700000,
+            "lastModifyDate": 1440864702000
+        },
+	    "message": null
+}
+
+	
+添加合作伙伴
+//（在注册页面选择合作伙伴，跳转到此页面进行注册添加）
+URL:"/partner/addPartners"	  
+Method=POST;
+*"userId”：String 类型 ，根据之前用户注册界面的ID将其返回到此页面
+*“realname”：String 类型
+  “adress” ： String类型 家庭住址	
+ *”empumber“：Integer 类型
+* ”sex“：    String类型，性别（男/女）
+*“email”： String 类型  邮箱
+  ”birthday“： Date类型，生日
+   ”mobilephone“：Integer类型 移动电话
+   ”fixedphone“：Integer类型 固定电话
+  * “companyname”：S听类型 公司名称
+   * “headimg”：    String类型 上传头像
+   }URL params:null
+    Response:
+	{
+    "status": 0,
+    "body": null
+	}
+	
+编辑合作伙伴信息
+URL:"/partner/editPartners"
+Method:POST;
+ * “id”：将当前合作伙伴的注册id返回，不可更改；
+"userId”：String 类型 ，根据之前用户注册界面的ID将其返回到此页面
+“realname”：String 类型
+  “adress” ： String类型 家庭住址	
+ ”empumber“：Integer 类型
+ ”sex“：    String类型，性别（男/女）
+  “email”： String 类型  邮箱
+  ”birthday“： Date类型，生日
+  ”mobilephone“：Integer类型 移动电话
+  ”fixedphone“：Integer类型 固定电话
+  “companyname”：S听类型 公司名称
+  “headimg”：    String类型 修改头像
+  }URL params:null
+    Response:
+	{"status":0,
+	"body":null,
+	"message":"编辑成功"}
+	
+删除合作者
+URL:"/partner/deletePartners/id"
+	Method=DELETE;
+Request:null
+   URL params:{
+    "id":1
+  }
+   Response:
+   { "status": 0,
+      "body": null
+   }
+   
+ 部门管理
+ 显示所有部门
+ URL:"/department/getDepartment
+ Method：GET
+ Request{
+ NULL
+ }
+   Response{ 返回一个数组
+   {"status":0,"body":[{"id":1,
+   "deptname":"工程部",
+   "deptphone":"12334",
+   "deptfax":"12334",
+   "deptleader":null,
+   "deptgrade":2,
+   "totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858077000,
+   "lastModifyDate":1440858081000},
+   {"id":2,
+   "deptname":"技术部",
+   "deptphone":"12334",
+   "deptfax":"12334",
+   "deptleader":null,
+   "deptgrade":3,
+   "totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858084000,
+   "lastModifyDate":1440858086000},
+   {"id":3,"deptname":"安检部",
+   "deptphone":"12334",
+   "deptfax":"12334",
+   "deptleader":null,
+   "deptgrade":1,
+   "totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858090000,
+   "lastModifyDate":1440858092000},
+   {"id":4,"deptname":
+   "财务部","deptphone":
+   "12334","deptfax":"12334"
+   ,"deptleader":null,
+   "deptgrade":2,"
+   totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858096000,
+   "lastModifyDate":1440858099000},
+   ,.....
+   ],"message":"查询成功"}
+   根据需要只显示id以及对应的部门名称
+   }
+	   
+	添加部门
+URL:“/department/add”
+Method:POST
+Request{
+“id”：Integer类型 
+"deptname":String类型, 部门名称
+
+}	
+Response{
+"status": 0,
+"body": null
+“message”：添加成功；
+
+}
+编辑部门
+ URL:"/department/update"
+ Method:POST
+ Request{
+“id”：Integer类型 
+}Response{
+"status": 0,
+"body": null
+“message”：添加成功；
+
+}
+	
+	
+	查询用户信息（分页查询）
+URL：“/user/query"
+Method:GET
+Response：
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 13,
+            "status": false,
+            "charactar": 1,
+            "username": "test",
+            "password": "098f6bcd4621d373cade4e832627b4f6",
+            "lastloginDate": 1440777600000,
+            "lastloginip": "192.168.1.1",
+            "validatacode": "1234",
+            "outdate": 1440860075000,
+            "createDate": 1440310318000,
+            "lastModifyDate": 1440453174000
+        },
+	    "message": null
+}
+
+
+

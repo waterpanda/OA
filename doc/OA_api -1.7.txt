@@ -1,0 +1,1407 @@
+BASE_URL:http://115.28.34.72:8080/OA
+
+API设计
+
+添加用户：
+    //客户端不提供注册功能
+    URL：“/user/regist”
+    Method:POST
+    Request : {
+      "charactar":1或是2,  1代表本公司  2代表业务伙伴  int类型
+      "username",:"test",  String类型
+      "password",:"test"   String类型
+    }
+    URL params:null
+    Response:
+    {
+    "status": 0,
+    "body": null
+    "message":"注册成功"
+    }
+
+
+删除一个用户：
+    URL：“/user/delete/id”
+    Method:GET
+    Request:null
+    URL params:{
+    "id":1
+    }
+    Response:
+    {
+    "status": 0,
+    "body":null
+    "message":"删除用户成功"
+    }
+
+更新user信息：
+    URL：“/user/update”
+    Method:POST
+    URL params:null
+    Request:{
+        "id":1,
+        "charactar":1或是2,  1代表本公司  2代表业务伙伴
+	"username":"test",
+	"password":"test",
+    }
+    Response：{
+        "status": 0,
+        "body": null
+	"message":"更新用户成功"
+    }
+
+
+验证用户登陆:
+    URL：“/user/login”
+    Method:POST
+    URL params:null
+    Request:{
+        "username":"test",
+        "password":"test"
+    }
+    Response：{
+        "status": 0,             //0为登陆成功，1表示密码错误，2表示用户不存在，-1表示未知错误，这里数据库做了一下修改
+        "body": {
+	"id": 15,                              int类型
+	"status": null,                        int类型
+	"charactar": 2,                        int类型
+	"username": "test2", 
+	"password": "",
+	"lastloginDate": null,                 Date类型
+	"lastloginip": null,                   String类型
+	"validatacode": null,                  String类型
+	"outdate": null,                       Date类型
+	"createDate": 1440430996000,           Date类型
+	"lastModifyDate": 1440430996000        Date类型
+  },
+  "message": "登录成功"
+    }
+
+
+密码找回API
+    URL：“/user/forget_password”
+    Method:GET
+    URL params:{
+	"username":"test"  
+	"email":"123@qq.com"
+    }
+    Response：{
+	"status": -1,
+	"body": null,
+	"message": "发送邮件失败"    输入邮箱和该用户注册时的邮箱不匹配，暂时用的我的邮箱 2452106414@qq.com
+    }
+
+
+设计项目模块API()
+
+按年份查询项目:
+    URL：“/projectdesign/queryProject/type”
+    Method:GET
+    URL params:{
+	"type":0    0表示查询当年项目，1表示查询去年项目，依次类推，最多可查询五年的项目
+    }
+    Request:null
+    Response：{     0表示查询项目成功，4表示项目不存在，-1是未知错误  
+	  "status": 0,
+	  "body": [   返回查询到的项目的List数组
+	    {
+	      "projectInfo": {
+		"id": 1,
+		"projectName": "南京体院项目",
+		"buildingName": "南京体院体育馆",
+		"number": "123",                   类型String    项目编号        
+		"isGoing": 0,                      类型String    项目是否开始施工，0表示还未施工，该项目会在设计项目模块展示，1表示已经开始施工，该项目会出现在工地管理模块
+		"description": null,               类型String    项目描述
+		"location": null,                  类型String    项目位置
+		"area": null,                      类型String    项目面积
+		"scale": null,                     类型String    项目规模
+		"datestart": 1408809600000,         Date
+		"dateend": 1440345600000,           Date
+		"image": null,
+		"effectpic": null,
+		"effectvideo": null,
+		"progress": null,                   Date         项目进度
+		"promessage": null,                              项目进度详情
+		"grade": null,
+		"creatDate": 1440430350000,
+		"lastModifyDate": 1440430354000
+	      },
+	      "clientfeedback": [  //返回为一个list数组
+		{
+		  "id": 2,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "多多加油",
+		  "createDate": null,
+		  "lastModifyDate": null
+		},
+		{
+		  "id": 1,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "工作很努力",
+		  "createDate": 1440454030000,
+		  "lastModifyDate": 1440454033000
+		}
+		...
+	      ]
+	    }
+	    ...
+	  ],
+	  "message": "查询项目成功"
+	}
+
+	
+按按名称查询项目:
+    URL：“/projectdesign/searchProject”
+    Method:GET
+    URL params:{
+	"keyName":"南京" 
+    }
+    Request:null
+    Response：{     0表示查询项目成功，4表示项目不存在，-1是未知错误  
+	  "status": -1,
+	  "body": [
+	    {
+	      "projectInfo": {
+		"id": 1,
+		"projectName": "南京体院项目",
+		"buildingName": "南京体院体育馆",
+		"number": "123",
+		"isGoing": 0,
+		"description": null,
+		"location": null,
+		"area": null,
+		"scale": null,
+		"datestart": 1408809600000,
+		"dateend": 1440345600000,
+		"image": null,
+		"effectpic": null,
+		"effectvideo": null,
+		"progress": null,
+		"promessage": null,
+		"grade": null,
+		"createDate": 1440430350000,
+		"lastModifyDate": 1440430354000
+	      },
+	      "clientfeedback": [
+		{
+		  "id": 2,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "多多加油",
+		  "createDate": null,
+		  "lastModifyDate": null
+		},
+		{
+		  "id": 1,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "工作很努力",
+		  "createDate": 1440454030000,
+		  "lastModifyDate": 1440454033000
+		}
+	      ]
+	    }
+	  ],
+	  "message": "没有匹配项目"
+	}			
+	
+	 
+
+按项目id查询项目:
+
+    此接口可用于设计项目的项目详情页面
+
+    URL：“/projectdesign/queryProjectById/id”
+    Method:GET
+    URL params:{
+	"id":1 
+    }
+    Request:null
+    {
+	Response：{  
+	  "status": 0,
+	  "body": {
+	    "related": [
+	      {
+		"employee": {
+		  "id": 12,
+		  "userId": 14,                int
+		  "realname": "海明",          String
+		  "empnumber": null,           String
+		  "address": null,
+		  "sex": null,
+		  "birthday": null,            Date
+		  "mobilephone": null,         String
+		  "fixedphone": null,          String
+		  "email": null,
+		  "positionId": 1,
+		  "departmentId": 4,
+		  "grade": null,               int
+		  "headimg": null,
+		  "note": null,
+		  "createDate": 1440433262000,
+		  "lastModifyDate": 1440433265000
+		},
+		"department": "财务部"
+	      }
+	    ],
+	    "stage": [
+	      {
+		"stage": [
+		  {
+		    "id": 1,
+		    "projectId": 1,
+		    "stage": 1,
+		    "message": "项目竞争激烈",
+		    "isFinished": 1,          表示是存于哪种状态0表示未开始，1表示进行中，2表示已完成
+		    "directorId": 11,
+		    "createDate": null,
+		    "lastModifyDate": null
+		  }
+		],
+		"director": {
+		  "position": [
+		    "总经理",
+		    "员工"
+		  ],
+		  "employee": {
+		    "id": 11,
+		    "userId": 13,
+		    "realname": "孟琦",
+		    "empnumber": null,
+		    "address": null,
+		    "sex": null,
+		    "birthday": null,
+		    "mobilephone": null,
+		    "fixedphone": null,
+		    "email": "2452106414@qq.com",
+		    "positionId": 1,
+		    "departmentId": 3,
+		    "grade": null,
+		    "headimg": null,
+		    "note": null,
+		    "createDate": 1440430495000,
+		    "lastModifyDate": 1440430498000
+		  },
+		  "department": "安监部"
+		}
+	      }
+	    ],
+	    "callbacks": [     这里返回为List   这个改为callbacks跟准确，因为回馈信息和反馈信息是不一样的，做一下区别
+	      {
+		"callback": {    这里也同样改为callback
+		  "id": 1,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "工作很努力",
+		  "createDate": null,
+		  "lastModifyDate": null
+		},
+		"role": "客户",
+		"originator": {
+		  "company": {
+		    "id": 1,
+		    "companyname": "万达集团",
+		    "address": null,
+		    "createDate": 1440398703000,
+		    "lastModifyDate": 1440398707000
+		  },
+		  "brief": {    表示回馈人的基本信息
+		    "id": 1,
+		    "userId": null,
+		    "realname": null,
+		    "address": null,
+		    "mobilephone": null,
+		    "fixedphone": null,
+		    "email": null,
+		    "grade": null,
+		    "position": null,         表示回馈人职位，董事长，总经理等
+		    "companyId": 1,           回馈人公司id
+		    "note": null,
+		    "headimg": null,
+		    "createDate": null,
+		    "lastModifyDate": null
+		  }
+		}
+	      },
+	      {
+		"callback": {
+		  "id": 2,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "工作很努力",
+		  "createDate": null,
+		  "lastModifyDate": null
+		},
+		"role": "客户",
+		"originator": {
+		  "company": {
+		    "id": 1,
+		    "companyname": "万达集团",
+		    "address": null,
+		    "createDate": 1440398703000,
+		    "lastModifyDate": 1440398707000
+		  },
+		  "brief": {
+		    "id": 1,
+		    "userId": null,
+		    "realname": null,
+		    "address": null,
+		    "mobilephone": null,
+		    "fixedphone": null,
+		    "email": null,
+		    "grade": null,
+		    "position": null,
+		    "companyId": 1,
+		    "note": null,
+		    "headimg": null,
+		    "createDate": null,
+		    "lastModifyDate": null
+		  }
+		}
+	      }
+	    ],
+	    "basicInfo": {
+	      "projectInfo": {
+		"id": 1,
+		"projectName": "南京体院项目",
+		"buildingName": "南京体院体育馆",
+		"number": "123",
+		"isGoing": 0,
+		"description": null,
+		"location": null,
+		"area": null,
+		"scale": null,
+		"datestart": 1408809600000,
+		"dateend": 1440345600000,
+		"image": null,
+		"effectpic": null,
+		"effectvideo": null,
+		"progress": null,
+		"promessage": null,
+		"grade": null,
+		"createDate": 1440430350000,
+		"lastModifyDate": 1440430354000
+	      },
+	      "director": {
+		"id": 12,
+		"userId": 14,
+		"realname": "海明",
+		"empnumber": null,
+		"address": null,
+		"sex": null,
+		"birthday": null,
+		"mobilephone": null,
+		"fixedphone": null,
+		"email": null,
+		"positionId": 1,
+		"departmentId": 4,
+		"grade": null,
+		"headimg": null,
+		"note": null,
+		"createDate": 1440433262000,
+		"lastModifyDate": 1440433265000
+	      }
+	    }
+	  },
+	  "message": "查询成功"
+	}
+
+
+
+客户端首页API
+
+    URL：“homePage/beforeLogin”      //登录前
+    URL：“homePage/afterLogin”       //登录后，会判断用户是否处于登录状态
+    Method:GET
+    URL params:{          
+    }
+    Response：{
+	  "status": 0,
+	  "body": {
+	    "HeadMessage": [    代表上面的图片和文字信息
+	      {
+		"id": 5,
+		"fromId": 13,
+		"content": "北京你好",
+		"imgpath": "asd.jpg",
+		"createDate": 1440313913000,
+		"lastModifyDate": 1440310313000
+	      },
+	      {
+		"id": 1,
+		"fromId": 13,
+		"content": "欢迎光临",
+		"imgpath": "os1.jpg",
+		"createDate": 1440310318000,
+		"lastModifyDate": 1440310318000
+	      },
+	      {
+		"id": 2,
+		"fromId": 13,
+		"content": "欢迎光临",
+		"imgpath": "os1.jpg",
+		"createDate": 1440303118000,
+		"lastModifyDate": 1440303118000
+	      },
+	      {
+		"id": 3,
+		"fromId": 13,
+		"content": "欢迎光临",
+		"imgpath": "dasoidj.jpg",
+		"createDate": 1440303113000,
+		"lastModifyDate": 1440303113000
+	      }
+	    ],
+	    "Notice": [     显示公告信息
+	      {
+		"id": 2,
+		"type": 2,
+		"fromId": null,
+		"title": "test",
+		"isAllvisible": 1,
+		"grade": null,
+		"createDate": null,
+		"lastModifyDate": null,
+		"content": "今天天气很好"
+	      }
+	    ]
+	  },
+	  "message": "查询成功"
+	}
+
+
+获取公告API
+    URL：“notice/getNotice”      //不管是否登录都可查看公告，服务器这边做判断返回是什么样的公告给客户端
+    Method:GET
+    URL params:{          
+    }
+    Response：{
+	  "status": 0,
+	  "body": [         返回的是一个List，可包含多个公告，公告里面包含图片images和公告内容notice
+	    {
+	      "images": [
+		"21.jpg",
+		"22.jpg"
+	      ],
+	      "notice": {
+		"id": 2,
+		"type": 2,
+		"fromId": null,
+		"title": "test",
+		"isAllvisible": 1,    //表示该公告是否所有人可见，1表示所有人可见，0表示非所有人可见
+		"grade": null,
+		"createDate": null,
+		"lastModifyDate": null,
+		"content": "今天天气很好"
+	      }
+	    }
+	  ],
+	  "message": "查询成功"
+	}
+
+
+    删除公告API
+    URL：“notice/deleteNotice/{id}“      //不管是否登录都可查看公告，服务器这边做判断返回是什么样的公告给客户端
+    Method:GET
+    URL params:{          
+	"id":1 
+    }
+    Response：{
+	 {
+	  "status": -1,         如果是未登录或是客户登录会显示无权删除，员工删除也需要权限，权限暂时还未做判断
+	  "body": null,
+	  "message": "无权删除公告"
+	}
+}
+
+
+查询公告
+URL：“notice/searchNoticeByTitle      //不管是否登录都可查看公告，服务器这边做判断返回是什么样的公告给客户端
+    Method:GET
+    URL params:{   
+    "title":"天气"
+    }
+    Response：{
+	{
+	  "status": 0,
+	  "body": [
+	    {
+	      "id": 2,
+	      "type": 2,
+	      "fromId": null,
+	      "title": "天气预会",
+	      "isAllvisible": 1,
+	      "grade": null,
+	      "createDate": null,
+	      "lastModifyDate": null,
+	      "content": "今天天气很好"
+	    }
+	  ],
+	  "message": "查询成功11"
+	}
+
+添加公告
+    URL：“notice/addNotice
+    Method:POST
+    URL params:null
+    Request:{
+    "status": 0,
+    "body":{
+	"type":1           //该字段表示公告重要级别，1表示普通，2表示重要
+	"from_id":11       //表示公告的发布人id
+	"title":"asd"      //公告标题
+	"content":"sdfsdg"    //表示公告内容
+	"is_allVisible":0     //表示公告是否所有部门可见，0表示不是所有部门可见，1表示所有部门可见
+	"departments":"工程部,安检部"   //表示公告的可见部门，不同部门用逗号“,”隔开，部分部门可见必须设置is_allVisible为0
+    }
+    }
+    "message": "添加公告成功"
+}
+
+编辑公告
+URL：“notice/editNotice
+    Method:POST
+    URL params:null
+    Request:{
+    "status": 0,
+    "body":{
+	"id":23            //表示需要编辑公告的ID
+	"type":1           //该字段表示公告重要级别，1表示普通，2表示重要
+	"from_id":11       //表示公告的发布人id
+	"title":"asd"      //公告标题
+	"content":"sdfsdg"    //表示公告内容
+	"is_allVisible":0     //表示公告是否所有部门可见，0表示不是所有部门可见，1表示所有部门可见
+	"departments":"工程部,安检部"   //表示公告的可见部门，不同部门用逗号“,”隔开，部分部门可见必须设置is_allVisible为0
+        "noticeImg":         //表示公告图片，如果添加多张图片名称需为一样的，都为noticeImg
+    }
+    }
+    "message": "编辑公告成功"
+}
+
+
+ 获取员工列表API
+
+ 获取所有员工的列表：
+
+    URL：“employee/getAllEmployee“  
+    Method:GET
+    URL params:{          
+    }
+  Response：{
+  "status": 0,
+  "body": [      返回List数组
+    {
+      "employee": {
+        "id": 12,
+        "userId": 14,
+        "realname": "海明",
+        "empnumber": null,
+        "address": null,
+        "sex": null,
+        "birthday": null,
+        "mobilephone": null,
+        "fixedphone": null,
+        "email": null,
+        "positionId": null,
+        "departmentId": 4,
+        "grade": null,
+        "headimg": null,
+        "note": null,
+        "createDate": 1440433262000,
+        "lastModifyDate": 1440433265000
+      }
+    },
+    {
+      "position": [         员工职位，考虑到一个员工可能有多个职位，所以这里返回为List
+        "总经理",
+        "员工"
+      ],
+      "employee": {
+        "id": 11,
+        "userId": 13,
+        "realname": "孟琦",
+        "empnumber": null,
+        "address": null,
+        "sex": null,
+        "birthday": null,
+        "mobilephone": null,
+        "fixedphone": null,
+        "email": "2452106414@qq.com",
+        "positionId": 1,
+        "departmentId": 3,
+        "grade": null,
+        "headimg": null,
+        "note": null,
+        "createDate": 1440430495000,
+        "lastModifyDate": 1440430498000
+      }
+    }
+  ],
+  "message": "查询成功"
+}
+
+
+通过ID查询某一个具体员工信息
+URL：“employee/getEmployeeById/{id}"  
+    Method:GET
+    URL params:{  
+    "id"
+    }
+  Response：{
+	  "status": 0,
+	  "body": {
+	    "position": [
+	      "总经理",
+	      "员工"
+	    ],
+	    "employee": {
+	      "id": 11,
+	      "userId": 13,
+	      "realname": "孟琦",
+	      "empnumber": null,
+	      "address": null,
+	      "sex": null,
+	      "birthday": null,
+	      "mobilephone": null,
+	      "fixedphone": null,
+	      "email": "2452106414@qq.com",
+	      "positionId": 1,
+	      "departmentId": 3,
+	      "grade": null,
+	      "headimg": null,
+	      "note": null,
+	      "createDate": 1440430495000,
+	      "lastModifyDate": 1440430498000
+	    }
+	  },
+	  "message": "查询成功"
+	}
+
+
+
+
+
+获取所有业务伙伴信息接口
+ URL：“partner/getPartners”  
+    Method:GET
+    URL params:{          
+    }
+Response：  
+	 "status": 0,
+	  "body": [     这里反馈业务伙伴的List列表
+	    {
+	      "partner": {
+		"id": 1,
+		"userId": null,
+		"realname": null,
+		"address": null,
+		"mobilephone": null,
+		"fixedphone": null,
+		"email": null,
+		"grade": null,
+		"position": null,
+		"companyId": 1,
+		"note": null,
+		"headimg": null,
+		"createDate": null,
+		"lastModifyDate": null
+	      },
+	      "company": {
+		"id": 1,
+		"companyname": "万达集团",
+		"address": null,
+		"createDate": 1440398703000,
+		"lastModifyDate": 1440398707000
+	      }
+	    },
+	     ],
+	 "message": "查询成功"
+
+
+
+	 查询某一个业务伙伴信息
+	URL：“partner/getPartnerById/{id}"  
+		Method:GET
+		 URL params:{  
+		"id"
+    }
+	    {
+	  "status": 0,
+	  "body": {
+	    "partner": {
+	      "id": 1,
+	      "userId": null,
+	      "realname": null,
+	      "address": null,
+	      "mobilephone": null,
+	      "fixedphone": null,
+	      "email": null,
+	      "grade": null,
+	      "position": null,
+	      "companyId": 1,
+	      "note": null,
+	      "headimg": null,
+	      "createDate": null,
+	      "lastModifyDate": null
+	    },
+	    "company": {
+	      "id": 1,
+	      "companyname": "万达集团",
+	      "address": null,
+	      "createDate": 1440398703000,
+	      "lastModifyDate": 1440398707000
+	    }
+	  },
+	  "message": "查询成功"
+	}
+
+
+工地管理接口API  工地管理里面的项目和设计项目里面的项目的区别是设计项目里面的项目还未开工，而工地管理里面的项目是已经开始建设
+
+ 设计和总包的返回项目列表的API
+URL：“projectManagement/queryProject/type”   和设计项目模块类似，type代表要查询哪一年的项目
+    Method:GET
+    URL params:{    
+    
+    }
+Response：  
+
+	"status": 0,   返回项目列表
+	  "body": [
+	    {
+	      "contractor": {    表示项目承包商
+		"partner": {
+		  "id": 2,
+		  "userId": 23,
+		  "realname": "王铭",
+		  "address": "河南",
+		  "sex": "男",
+		  "birthday": -410256000000,
+		  "mobilephone": "34534",
+		  "fixedphone": "3453",
+		  "email": "234@qq.com",
+		  "grade": 6,
+		  "position": "总经理",
+		  "companyId": 2,
+		  "note": "河南建工的总经理",
+		  "headimg": "lit.jpg",
+		  "createDate": 1440864856000,
+		  "lastModifyDate": 1440864859000
+		},
+		"company": {
+		  "id": 2,
+		  "companyname": "河南建工集团",
+		  "address": "河南郑州",
+		  "createDate": 1440398709000,
+		  "lastModifyDate": 1440398713000
+		}
+	      },
+	      "projectInfo": {
+		"id": 6,
+		"projectName": "商务楼项目",
+		"buildingName": "德邦物流总部",
+		"number": "A014-08-06-08",
+		"isGoing": 1,
+		"description": "项目位于市中心热门地段，能够很好的实现项目规划是提出的实现要求",
+		"location": "北京",
+		"area": "4576",
+		"scale": "54345634",
+		"datestart": 1408809600000,
+		"dateend": 1440345600000,
+		"image": "image.jpg",
+		"effectpic": "image.jpg",
+		"effectvideo": "video.mp4",
+		"progress": "34",
+		"promessage": "现阶段负责人为工程部刘晓伟，规划等工作已经完成，",
+		"grade": 4,
+		"createDate": 1440952394000,
+		"lastModifyDate": 1440952412000
+	      }
+	    }
+	  ],
+	  "message": "查询项目成功"
+	}
+
+根据项目ID来查询项目
+URL：“projectManagement/queryProject/id”   和设计项目模块类似，type代表要查询哪一年的项目
+    Method:GET
+    URL params:{  
+    "id":1
+    }
+	Response：
+	{
+	  "status": 0,
+	  "body": {
+	    "feedbacks": [   项目的反馈信息
+	      {
+		"feedback": {
+		  "id": 17,
+		  "projectId": 6,
+		  "fromId": 1,
+		  "message": "设计图方案A-407E中大门宽度增加0.8M",
+		  "createDate": 1440998573000,
+		  "lastModifyDate": 1440998598000
+		},
+		"images": [     反馈信息图片，可能包含多张图片，所以这里为List
+		  "业主.jpg"
+		],
+		"role": "业主"   反馈人角色，有业主，客户，承包商，政府管理人员等
+	      },
+	      {
+		"feedback": {
+		  "id": 18,
+		  "projectId": 6,
+		  "fromId": 2,
+		  "message": "我方在施工过程中发现楼道单介厚度*12的情况下，整体无法达到预期总高度",
+		  "createDate": 1440998573000,
+		  "lastModifyDate": 1440998598000
+		},
+		"images": [
+		  "承包商.jpg"
+		],
+		"role": "承包商"
+	      },
+	      {
+		"feedback": {
+		  "id": 19,
+		  "projectId": 6,
+		  "fromId": 3,
+		  "message": "此次项目进行有望提前完结，希望各位再接再厉，对此次项目表示满意予以表扬",
+		  "createDate": 1440998573000,
+		  "lastModifyDate": 1440998598000
+		},
+		"images": [
+		  "客户.jpg"
+		],
+		"role": "客户"
+	      }
+	    ],
+	    "basicInfo": {         项目基本信息
+	      "projectInfo": {
+		"id": 6,
+		"projectName": "商务楼项目",
+		"buildingName": "德邦物流总部",
+		"number": "A014-08-06-08",
+		"isGoing": 1,
+		"description": "项目位于市中心热门地段，能够很好的实现项目规划是提出的实现要求",
+		"location": "北京",
+		"area": "4576",
+		"scale": "54345634",
+		"datestart": 1408809600000,
+		"dateend": 1440345600000,
+		"image": "image.jpg",
+		"effectpic": "image.jpg",
+		"effectvideo": "video.mp4",
+		"progress": "34",
+		"promessage": "现阶段负责人为工程部刘晓伟，规划等工作已经完成，",
+		"grade": 4,
+		"createDate": 1440952394000,
+		"lastModifyDate": 1440952412000
+	      },
+	      "designer": {          项目设计师
+		"id": 13,
+		"userId": 15,
+		"realname": "袁旭",
+		"empnumber": "234",
+		"address": "公司总部",
+		"sex": "男",
+		"birthday": 1440777600000,
+		"mobilephone": "346",
+		"fixedphone": "643",
+		"email": "123@sohu.com",
+		"positionId": null,
+		"departmentId": 10,
+		"grade": 3,
+		"headimg": "image.jpg",
+		"note": "工作认真负责",
+		"createDate": 1440859755000,
+		"lastModifyDate": 1440859757000
+	      },
+	      "customer": {          项目客户
+		"partner": {
+		  "id": 2,
+		  "userId": 23,
+		  "realname": "王铭",
+		  "address": "河南",
+		  "sex": "男",
+		  "birthday": -410256000000,
+		  "mobilephone": "34534",
+		  "fixedphone": "3453",
+		  "email": "234@qq.com",
+		  "grade": 6,
+		  "position": "总经理",
+		  "companyId": 2,
+		  "note": "河南建工的总经理",
+		  "headimg": "lit.jpg",
+		  "createDate": 1440864856000,
+		  "lastModifyDate": 1440864859000
+		},
+		"company": {         项目客户所在的公司
+		  "id": 2,
+		  "companyname": "河南建工集团",
+		  "address": "河南郑州",
+		  "createDate": 1440398709000,
+		  "lastModifyDate": 1440398713000
+		}
+	      }
+	    }
+	  },
+	  "message": "查询成功"
+	}
+
+
+搜索项目   （与设计项目模块类似）
+
+URL：“/projectManagement/searchProject”
+    Method:GET
+    URL params:{
+	"keyName":"南京" 
+    }
+    Request:null
+    Response：{     0表示查询项目成功，4表示项目不存在，-1是未知错误  
+	  "status": -1,
+	  "body": [
+	    {
+	      "projectInfo": {
+		"id": 1,
+		"projectName": "南京体院项目",
+		"buildingName": "南京体院体育馆",
+		"number": "123",
+		"isGoing": 0,
+		"description": null,
+		"location": null,
+		"area": null,
+		"scale": null,
+		"datestart": 1408809600000,
+		"dateend": 1440345600000,
+		"image": null,
+		"effectpic": null,
+		"effectvideo": null,
+		"progress": null,
+		"promessage": null,
+		"grade": null,
+		"createDate": 1440430350000,
+		"lastModifyDate": 1440430354000
+	      },
+	      "clientfeedback": [
+		{
+		  "id": 2,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "多多加油",
+		  "createDate": null,
+		  "lastModifyDate": null
+		},
+		{
+		  "id": 1,
+		  "projectId": 1,
+		  "fromId": 1,
+		  "message": "工作很努力",
+		  "createDate": 1440454030000,
+		  "lastModifyDate": 1440454033000
+		}
+	      ]
+	    }
+	  ],
+	  "message": "没有匹配项目"
+	}			
+	
+
+监理、工地管理模块API
+URL：“/projectManagement/getSupervisorProject/type“
+    Method:GET
+    URL params:{
+	"type":1     type可以有三个取值，1表示按工期，2表示按进度，3表示按工程量 
+    }
+    
+    Response：{     返回的是一个List，包含所有符合要求的项目列表
+	  "status": 0,
+	  "body": [
+	    {
+	      "contractor": {  项目承包商
+		"partner": {
+		  "id": 2,
+		  "userId": 23,
+		  "realname": "王铭",
+		  "address": "河南",
+		  "sex": "男",
+		  "birthday": -410256000000,
+		  "mobilephone": "34534",
+		  "fixedphone": "3453",
+		  "email": "234@qq.com",
+		  "grade": 6,
+		  "position": "总经理",
+		  "companyId": 2,
+		  "note": "河南建工的总经理",
+		  "headimg": "lit.jpg",
+		  "createDate": 1440864856000,
+		  "lastModifyDate": 1440864859000
+		},
+		"company": {    项目承包商所在公司
+		  "id": 2,
+		  "companyname": "河南建工集团",
+		  "address": "河南郑州",
+		  "createDate": 1440398709000,
+		  "lastModifyDate": 1440398713000
+		}
+	      },
+	      "projectInfo": {
+		"id": 3,
+		"projectName": "安徽剧院项目",
+		"buildingName": "安徽合肥戏剧中心",
+		"number": "A014-08-06-08",
+		"isGoing": 1,
+		"description": "项目位于市中心热门地段，能够很好的实现项目规划是提出的实现要求",
+		"location": "安徽",
+		"area": "5464",
+		"scale": "4564346",
+		"datestart": 1314115200000,
+		"dateend": 1351008000000,
+		"image": "image.jpg",
+		"effectpic": "image.jpg",
+		"effectvideo": "video.mp4",
+		"progress": "79",
+		"promessage": "现阶段负责人为工程部刘晓伟，规划等工作已经完成，",
+		"grade": 4,
+		"createDate": 1440952400000,
+		"lastModifyDate": 1440952419000
+	      }
+	    },
+	 ],
+	  "message": "查询项目成功"
+	}
+
+
+添加反馈API
+添加公告
+    URL：“project/addFeedback
+    Method:POST
+    URL params:null
+    Request:{
+    "status": 0,
+	  "body": [
+	    {
+	    "from_id":11       //表示反馈的发布人id
+	    "project_id":2     //该反馈对应项目ID
+	    "title":"asd"      //公告标题
+	    "message":"sdfsdg"    //表示反馈内容
+	    "feedbackImg":        //反馈图片，可以添加一张或多张图片，也可以不添加图片
+	}
+    }
+	 "message": "添加反馈成功"
+}
+
+
+获取项目分包信息接口
+URL：“/projectManagement/querySubcontractById/id“
+    Method:GET
+    URL params:{
+	"id":2     id为项目id目前只有id为2有分包信息，安钢御水园项目
+    }
+status": 0,
+  "body": {
+    "subcontract": [                   表示分包，此处为List
+      {
+        "datestart": 1441555200000,    分包开始时间
+        "contractor": {                分包承包商
+          "telephone": "3534",
+          "company": "河南省安阳市政府",
+          "id": 4,
+          "position": "办公室主任",
+          "fixedphone": "3453",
+          "realname": "张亮"
+        },
+        "progress": "95",            分包进度
+        "dateend": 1441641600000,    分包结束时间
+        "id": 1,
+        "title": "幕墙工程"
+      },
+      {
+        "datestart": 1441555200000,
+        "contractor": {
+          "telephone": "3534",
+          "company": "河南省安阳市政府",
+          "id": 4,
+          "position": "办公室主任",
+          "fixedphone": "3453",
+          "realname": "张亮"
+        },
+        "progress": "70",
+        "dateend": 1441641600000,
+        "id": 2,
+        "title": "电梯"
+      },
+   ]
+   "project_progress": "39",
+    "project_name": "南京体院项目"
+  }
+
+
+
+  获取总包信息接口（第一级菜单）
+URL：“/projectManagement/queryProjectManageById/id"
+    Method:GET
+    URL params:{
+	"id":2     id为项目id目前只有id为2有总包信息，安钢御水园项目
+    }
+
+    {
+  "status": 0,
+  "body": {
+   {
+  "status": 0,
+  "body": [           //此处为List，包含所有一级总包信息
+    {
+      "sequence": 1,         //表示总包的第一个，这个字段为总包的顺序
+      "id": 1,
+      "title": "项目策划",
+      "status": 4
+    },
+    {
+      "sequence": 2,
+      "id": 2,
+      "title": "项目建议书",
+      "status": 4
+    },
+    ...
+],
+  "message": "查询成功"
+}
+
+
+  获取总包信息二级菜单或是阶段信息接口   （如果没有下一级菜单，则会返回阶段信息）
+URL：“/projectManagement/queryProjectSubListByParentId/id"
+    Method:GET
+    URL params:{
+	"id":6     id为上一级菜单id，只有id为6有信息
+    }
+    {
+  {
+  "status": 0,
+  "body": [
+    {
+      "sequence": 1,
+      "id": 7,
+      "title": "设计程序与管理"
+    },
+    {
+      "sequence": 2,
+      "id": 8,
+      "title": "国有土地使用证办理"
+    },
+    {
+      "sequence": 3,
+      "id": 9,
+      "title": "安评、环评、能评"
+    },
+    {
+      "sequence": 4,
+      "id": 10,
+      "title": "工程规划许可证申请"
+    }
+  ],
+  "message": "查询成功"
+}
+
+
+  如果没有下一级菜单，则会返回阶段信息，如下：（当id=10）
+{
+  "status": 0,
+  "body": [
+    {
+      "stage": 1,
+      "director": {
+        "id": 17,
+        "department": "策划部",
+        "realname": "尹可文"
+      },
+      "message": "申请资料整合",
+      "is_finished": 2
+    },
+    {
+      "stage": 2,
+      "director": {
+        "id": 13,
+        "department": "设计部",
+        "realname": "袁旭"
+      },
+      "message": "方案设计及施工图纸设计",
+      "is_finished": 2
+    },
+    {
+      "stage": 3,
+      "director": {
+        "id": 14,
+        "department": "工程部",
+        "realname": "刘晓伟"
+      },
+      "message": "墙体材料革新办公室证明",
+      "is_finished": 2
+    },
+    {
+      "stage": 4,
+      "director": {
+        "id": 15,
+        "department": "安检部",
+        "realname": "秦瑜"
+      },
+      "message": "提交申请及后续工作",
+      "is_finished": 2
+    },
+    {
+      "stage": 5,
+      "director": {
+        "id": 16,
+        "department": "财务部",
+        "realname": "孙红"
+      },
+      "message": "完成申请协调余下工作",
+      "is_finished": 2
+    }
+  ],
+  "message": "查询成功"
+}
+
+
+  获取规章制度所有章接口：
+URL：“/rule/getChapters"
+    Method:GET
+    URL params:{
+	null
+    }
+  {
+  "status": 0,
+  "body": {
+    "chapters": [         //表示章节信息，
+      {
+        "codeNum": 0,                   //该字段表示为哪一章，0表示前言
+        "id": 2,
+        "content": "前言"
+      },
+      {
+        "codeNum": 1,
+        "id": 3,
+        "content": "总则"
+      },
+      {
+        "codeNum": 2,
+        "id": 4,
+        "content": "员工守则"
+      },
+      {
+        "codeNum": 3,
+        "id": 5,
+        "content": "人事管理制度"
+      },
+      {
+        "codeNum": 4,
+        "id": 6,
+        "content": "考勤管理制度"
+      },
+      {
+        "codeNum": 5,
+        "id": 7,
+        "content": "办公室环境管理制度"
+      },
+      {
+        "codeNum": 6,
+        "id": 8,
+        "content": "办公设备管理制度"
+      },
+      {
+        "codeNum": 7,
+        "id": 9,
+        "content": "车辆管理制度"
+      },
+      {
+        "codeNum": 8,
+        "id": 10,
+        "content": "档案管理制度"
+      },
+      {
+        "codeNum": 9,
+        "id": 11,
+        "content": "职业仪表管理制度"
+      },
+      {
+        "codeNum": 10,
+        "id": 12,
+        "content": "消防管理制度"
+      },
+      {
+        "codeNum": 11,
+        "id": 13,
+        "content": "附则"
+      }
+    ],
+    "title": "中机十院规章制度"      //规章制度标题，考虑到后台提供编辑功能，标题可能会变化，所以客户端不写死
+  },
+  "message": "获取规章制度成功"
+}
+
+
+  获取某一章的具体信息接口
+  URL：“/rule/getSectionsByChapterId/{id}"
+    Method:GET
+    URL params:{
+	"id":3     
+    }
+ {
+  "status": 0,
+  "body": {
+    "id": 3,
+    "title": "总则",      //表示章标题
+    "sections": [
+      {
+        "codeNum": 1,        //表示该章的具体某一节
+        "content": "为完善公司管理制度，逐步健全现代化管理机制，使内部管理走向科学化、系统化、规范化，特制订本管理章程。"
+      },
+      {
+        "codeNum": 2,
+        "content": "在总公司董事长、总经理等领导的指导下，本公司总经办负责起草审查并督促执行公司的所有规章制度，并由以总经理为首的办公室领导机构开展具体工作。"
+      },
+      {
+        "codeNum": 3,
+        "content": "凡属本公司职员都必须遵守和执行本管理章程的各有关条款，同时享有本章程所有定的一切权益。"
+      },
+      {
+        "codeNum": 4,
+        "content": "凡违反本章程的职员，由有关部门依有关制度为准绳，按程序公正处理。"
+      },
+      {
+        "codeNum": 5,
+        "content": "各有关部门可依据本章程有关指导原则，根据本部门实际具体情况，制订相关的管理细则，报公司审批批准生效。"
+      },
+      {
+        "codeNum": 5,
+        "content": "各部门单位负责人，应当经常开展培训督促所属人员遵守本管理制度。"
+      },
+      {
+        "codeNum": 6,
+        "content": "对违反本管理制度的行为者，任何人都有劝阻和投诉的权利。"
+      }
+    ]
+  },
+  "message": "获取规章制度成功"
+}
+
+
+对规章制度进行查询 （查询为查询规章制度每章的标题）
+URL：“/rule/getSectionsByChapterId/{id}"
+    Method:GET
+    URL params:{
+	"keyName":总
+    }
+
+  "status": 0,
+  "body": [
+    {
+      "codeNum": 1,    // 表示为具体哪一章，0表示序言
+      "id": 3,                 //章id
+      "content": "总则"        //章标题
+    }
+  ],
+  "message": "获取规章制度成功"

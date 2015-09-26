@@ -1,0 +1,142 @@
+/**全局样式**/
+html,body,ul,li,div,span,ol,table,tr,td,th,span,p,a,input,label,textarea,select,button {
+	margin:0;
+	padding:0;
+	border:0;
+}
+body {
+	font-family:"Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
+	background:#e7e8eb;
+	font-size:14px;
+	color:#404040;
+	max-width:1400px;
+	margin:0 auto;
+}
+/**头部*/
+#header {
+	background:#FFF;
+	height:60px;
+	border-top: solid 5px #44b549;
+}
+.user-infor img{
+    width: 50px;
+    height: 40px
+}
+.header-content {
+	width:1200px;
+	margin:0 auto;
+}
+.logo-icon {
+	display:block;
+	float:left;
+	margin-top:10px;
+	color:#d9d9da;
+	font-size:35px;
+}
+.logo-text {
+	display:block;
+	float:left;
+	margin-top:12px;
+	margin-left:10px;
+	font-size:23px;
+	color:#969696;
+}
+.logo-subicon {
+	display:block;
+	float:left;
+	background:#d9d9da;
+	color:#FFF;
+	padding:1px 7px;
+	margin-top:18px;
+	font-size: 12px;
+	margin-left:2px;
+	border-radius: 20px;
+}
+.user-infor {
+	padding-top:10px;
+	float:right;
+	width:250px;
+}
+.user-infor img {
+	float:left;
+}
+.user-detail {
+	float:left;
+}
+.user-identity {
+	width:55px;
+	display:block;
+	background:#7cbae5;
+	padding:0px 3px;
+	font-size: 11px;
+	color:#FFF;
+}
+.user-name {
+	font-size:13px;
+}
+.user-name span {
+	color:#CCC;
+	margin-left:15px;
+}
+.user-name a {
+	margin-left:15px;
+}
+/**头部完**/
+#container {
+	width:1200px;
+	margin:0 auto;
+	background:#FFF;
+	margin-top:40px;
+	border:solid 1px #DDD;
+	overflow: hidden;
+	margin-bottom:50px;
+}
+/*导航栏*/
+.first-nav {
+	float:left;
+	width:18%;
+	list-style: none;
+	border-right:solid 1px #CCC;
+	padding-top:15px;
+}
+.first-nav li {
+	color:#969696;
+	padding-left:30px;
+	padding-top:15px;
+	font-size:14px;
+}
+.first-nav li span{
+	font-size:20px;
+	margin-right:10px;
+}
+.second-nav {
+	list-style: none;
+	margin-left:-30px;
+	margin-top:10px;
+	border-bottom: solid 1px #CCC;
+	padding-bottom:10px;
+}
+.second-nav li {
+	padding:7px 0;
+	padding-left:60px;
+}
+.second-nav li:hover {
+	background:#E7EAEC;
+}
+.second-nav li a {
+	color:#222;
+	text-decoration: none;
+}
+li.active {
+	background:#44b549;
+}
+li.active a {
+	color:#FFF !important;
+}
+.second-nav li a {
+	color:#404040;
+}
+.main-content {
+	float:left;
+	width:82%;
+} 
