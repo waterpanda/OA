@@ -11,18 +11,25 @@ $(".user-name").html(OA.loginName+"<span>|</span><a href='javascript:;'>退出</
 //点击导航进行界面跳转
 function navChange() {
     $(" .second-nav li:eq(0)").click(function () {
-        location.href = "";
+        location.href = "../jl/addUser.html";
     });
 
-    $(".second-nav li:eq(2)").click(function () {
-        location.href = "";
-    });
     $(".second-nav li:eq(1)").click(function () {
-        location.href = "";
+        location.href = "../jl/changePassword.html";
+    });
+    $(".second-nav li:eq(2)").click(function () {
+        location.href = "../jl/userManage.html";
     });
     $(" .second-nav li:eq(3)").click(function () {
-        location.href = "";
+        location.href = "../jl/departmentManage.html";
+    });
+    $(" .second-nav li:eq(4)").click(function () {
+        location.href = "../jl/boardManage.html";
+    });
+    $(" .second-nav li:eq(5)").click(function () {
+        location.href = "../jl/rulesManage.html";
     })
+
 }
 
 
