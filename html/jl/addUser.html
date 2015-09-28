@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
     <!--加载css-->
     <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/jl/userAdd.css"/>
 </head>
 <body>
 <!--头部-->
@@ -61,6 +62,39 @@
     </ul>
     <!--这里放置个人的代码-->
     <div class="main-content">
+        <div  class="first-add">
+            <form class="form-warpper">
+                <div class="form-group">
+                    <label >用户类别 </label>
+                    <select class="form-control" id="user">
+                        <option>公司员工</option>
+                        <option>业务伙伴</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class=" col-sm-3" for="username">用户名</label>
+                    <div class="col-sm-7">
+                        <input type="password" id="username" class="form-control input-sm  " >
+                        <p class="status username-status"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class=" col-sm-3" for="inputPassword">密码</label>
+                    <div class="col-sm-7">
+                        <input type="password" id="inputPassword" class="form-control input-sm col-sm-3" >
+                        <p class="status inputPassword-status"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3" for="confirmPassword">确认密码</label>
+                    <div class="col-sm-7">
+                    <input type="password" id="confirmPassword" class="form-control input-sm"  >
+                    <p class="status confirmPassword-status"></p>
+                    </div>
+                </div>
+                <button class="btn btn-success " id="first-submit"> 注册</button>
+            </form>
+        </div>
     </div>
 </div>
 <!--加载框架-->

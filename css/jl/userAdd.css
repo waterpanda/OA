@@ -1,0 +1,18 @@
+.main-content{
+    padding: 40px;
+}
+
+.form-group{
+   padding-bottom: 40px;
+}
+.first-add select {
+    width: 200px;
+    float: right;
+    margin-right: 450px;
+    margin-bottom: 20px;
+}
+#first-submit{
+    clear: both;
+    margin: 40px  0 0 250px;
+    width: 100px;
+}
