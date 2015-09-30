@@ -9,7 +9,7 @@ $(function(){
     function checkNull(array){
         for(var i=0;i<array.length;i++){
             $(".form-group input").eq(i).blur(function(){
-                if($(this).val()==null || $(this).val()==""){
+                if($(this).val()==null || $.trim($(this).val())==""){
                     $(this).parents(".form-group").addClass("has-warning");
                     $(this).next().addClass("fa fa-warning").css("color","#8a6d3b");
                     $(this).parent().next().html("输入不能为空");
@@ -29,7 +29,7 @@ $(function(){
     $(".loginSumbit").bind("click",function(){
         var number=0;
         var user = {
-            name:$("#loginName").val(),
+            name: $.trim($("#loginName").val()),
             password:$("#loginPassword").val()
         };
 
