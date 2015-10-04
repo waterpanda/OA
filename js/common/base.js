@@ -2,11 +2,11 @@ window.prePath = "http://localhost:8081/oa";
 
 
 navChange();
-listShow();
+
 
 //登录后的标题栏显示
 
-$(".user-name").html(OA.loginName+"<span>|</span><a href='javascript:;'>退出</a>");
+//$(".user-name").html(OA.loginName+"<span>|</span><a href='javascript:;'>退出</a>");
 
 //点击导航进行界面跳转
 function navChange() {
@@ -140,4 +140,32 @@ function isNumber( s ){
 function getLength(str) {
     return str.replace(/[^\x00-xff]/g,"xx").length;
 }
-
+//转换时间的函数 调用形式 format(时间变量, 'yyyy-MM-dd HH:mm:ss')
+function format(time, format) {
+    var t = new Date(time);
+    var tf = function (i) {
+        return (i < 10 ? '0' : '') + i
+    };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (a) {
+        switch (a) {
+            case 'yyyy':
+                return tf(t.getFullYear());
+                break;
+            case 'MM':
+                return tf(t.getMonth() + 1);
+                break;
+            case 'mm':
+                return tf(t.getMinutes());
+                break;
+            case 'dd':
+                return tf(t.getDate());
+                break;
+            case 'HH':
+                return tf(t.getHours());
+                break;
+            case 'ss':
+                return tf(t.getSeconds());
+                break;
+        }
+    })
+}
