@@ -40,50 +40,6 @@ function checkNull(){
 //注册按钮点击事件
 function firstRegister(){
     $(".register-btn").click(function(){
-        var status = false;
-        var i = 0;
-        $(".form-group").each(function(){
-            status = $(this).hasClass("has-success");
-            status? ++i:i;
-        });
-        var user = {
-            name:$(".register #loginName").val(),
-            password:$(".register #password").val()
-        };
-        var codeNumber = $(".register #confirm-code").val();
-        if (i==3) {
-            $.ajax({
-                url: "api/user?code=" + codeNumber,
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(user),
-                success: function (data) {
-                    if (data.status == 0) {
-                        $("#mymodal .modal-body p").html("操作成功!");
-                        $("#mymodal").modal("toggle");
-
-                    }
-                    if (data.status == 6) {
-                        $("#mymodal .modal-body p").html("该用户已存在！");
-                        $("#mymodal").modal("toggle");
-                    }
-                    if (data.status == 1) {
-                        $("#mymodal .modal-body p").html("操作失败!");
-                        $("#mymodal").modal("toggle");
-                    }
-                    if (data.status == 10) {
-                        $("#mymodal .modal-body p").html("验证码失败!");
-                        $("#mymodal").modal("toggle");
-                    }
-                },
-                error: function () {
-                    $("#mymodal .modal-body p").html("Ajax 发送失败！");
-                    $("#mymodal").modal("toggle");
-                }
-            });
-        }else{
-            $("#mymodal .modal-body p").html("请检查输入格式是否正确");
-            $("#mymodal").modal("toggle");
-        }
+        
     });
 }

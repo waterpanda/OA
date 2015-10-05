@@ -8,25 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
     <!--加载css-->
     <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
-    <style type="text/css">
 
-        .header-content{
-            float: right;
-        }
-
-        .table-wrapper th,.table-wrapper td{
-            text-align: center;
-        }
-        .status{
-            color: #ff5400;
-        }
-
-        #user-search label{
-            float: left;
-            line-height: 40px;
-        }
-
-    </style>
 </head>
 <body>
 <!--头部-->
@@ -49,8 +31,8 @@
     <ul class="first-nav">
         <li><span class="fa fa-twitter"></span>用户管理
             <ul class="second-nav">
-                <li ><a href="#">注册</a></li>
-                <li class="active"><a href="#">修改密码</a></li>
+                <li ><a href="#">添加人员</a></li>
+                <li class="active"><a href="#">添加部门</a></li>
             </ul>
         </li>
 
@@ -80,21 +62,6 @@
     </ul>
     <!--这里放置个人的代码-->
     <div class="main-content">
-        <div  class="change-password">
-            <form class="form-horizontal">
-                <li class="mes-warp">
-                    <label class=" col-sm-3" for="inputPassword">新密码</label>
-                    <input type="password" id="inputPassword">
-                    <p class="status inputPassword-status"></p>
-                </li>
-                <li class="mes-warp">
-                    <label class="col-sm-3" for="confirmPassword">确认密码</label>
-                    <input type="password" id="confirmPassword" >
-                    <p class="status confirmPassword-status"></p>
-                </li>
-                <button class="btn btn-success " id="password-change"> 修改</button>
-            </form>
-        </div>
     </div>
 </div>
 <!--加载框架-->

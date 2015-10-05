@@ -1,16 +1,42 @@
-.main-content{
-    padding: 40px;
+.wrapper {
+    padding: 20px;
+}
+.user-type label{
+    float: left;
+
+}
+.user-type{
+    margin-top: 10px;
+}
+.content-nav{
+    margin: 0 auto;
+}
+
+.content-nav li{
+    text-align: center;
+    float: left;
+    list-style-type: none;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    background-color: #a3a3a3;
+    color: #ffffff;
+    border: 1px #ffffff solid;
+}
+.content-nav li:hover,.content-nav .status-active{
+    background-color: #7cbae5;
+}
+.content-body{
+    background-color: #ffffff;
+    width: 82%;
+    float: left;
+    position: relative;
 }
 
 .form-group{
    padding-bottom: 40px;
 }
-.first-add select {
-    width: 200px;
-    float: right;
-    margin-right: 450px;
-    margin-bottom: 20px;
-}
+
 #first-submit{
     clear: both;
     margin: 40px  0 0 250px;

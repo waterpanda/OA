@@ -15,7 +15,7 @@ function navChange() {
     });
 
     $(".second-nav li:eq(1)").click(function () {
-        location.href = "../jl/changePassword.html";
+        location.href = "../jl/addDepart.html";
     });
     $(".second-nav li:eq(2)").click(function () {
         location.href = "../jl/userManage.html";
