@@ -1,6 +1,9 @@
 .wrapper {
     padding: 20px;
 }
+p.status{
+    color: #ff464a;
+}
 .user-type label{
     float: left;
 
