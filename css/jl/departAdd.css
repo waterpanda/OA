@@ -1,9 +1,20 @@
-.first-wrapper {
+.wrapper {
     padding: 20px;
+}
+p.status{
+    color: #ff464a;
+}
+.user-type label{
+    float: left;
+
+}
+.user-type{
+    margin-top: 10px;
 }
 .content-nav{
     margin: 0 auto;
 }
+
 .content-nav li{
     text-align: center;
     float: left;
@@ -23,4 +34,33 @@
     width: 82%;
     float: left;
     position: relative;
+}
+
+.form-group{
+    padding-bottom: 40px;
+}
+
+#first-submit{
+    clear: both;
+    margin: 40px  0 0 250px;
+    width: 100px;
+}
+#second-add-mes p{
+    margin: 10px;
+    color: orangered;
+}
+#second-add-mes #second-commit-user{
+    margin-left: 20px;
+    margin-bottom: 40px;
+}
+#second-add-mes #second-commit-user p{
+    position: relative;
+    top: -35px;
+    left: 370px;
+}
+#second-add-mes .form-group div{
+    height: 30px;
+}
+#second-submit{
+    margin-left: 50px;
 }
