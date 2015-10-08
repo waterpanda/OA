@@ -2,27 +2,52 @@ window.prePath = "http://localhost:8081/oa";
 
 
 navChange();
-listShow();
+
 
 //登录后的标题栏显示
 
-$(".user-name").html(OA.loginName+"<span>|</span><a href='javascript:;'>退出</a>");
+//$(".user-name").html(OA.loginName+"<span>|</span><a href='javascript:;'>退出</a>");
 
 //点击导航进行界面跳转
 function navChange() {
     $(" .second-nav li:eq(0)").click(function () {
-        location.href = "";
+        location.href = "../jl/addUser.html";
     });
 
-    $(".second-nav li:eq(2)").click(function () {
-        location.href = "";
-    });
     $(".second-nav li:eq(1)").click(function () {
-        location.href = "";
+        location.href = "../jl/addDepart.html";
+    });
+    $(".second-nav li:eq(2)").click(function () {
+        location.href = "../jl/userManage.html";
     });
     $(" .second-nav li:eq(3)").click(function () {
-        location.href = "";
+        location.href = "../jl/departmentManage.html";
+    });
+    $(" .second-nav li:eq(4)").click(function () {
+        location.href = "../jl/boardManage.html";
+    });
+    $(" .second-nav li:eq(5)").click(function () {
+        location.href = "../jl/rulesManage.html";
     })
+    $(" .second-nav li:eq(6)").click(function(){
+        location.href="../../html/lyc/partner.html";
+    })
+    $(" .second-nav li:eq(7)").click(function(){
+        location.href="../../html/lyc/company.html";
+    })
+    $(" .second-nav li:eq(8)").click(function(){
+        location.href="../../html/lyc/projectdesign.html";
+    })
+    $(" .second-nav li:eq(9)").click(function(){
+        location.href="../../html/lyc/projectstage.html";
+    })
+    $(" .second-nav li:eq(10)").click(function(){
+        location.href="../../html/lyc/projectrelated.html";
+    })
+    $(" .second-nav li:eq(11)").click(function(){
+        location.href="../../html/lyc/projectrelatedemp.html";
+    })
+
 }
 
 
@@ -133,4 +158,32 @@ function isNumber( s ){
 function getLength(str) {
     return str.replace(/[^\x00-xff]/g,"xx").length;
 }
-
+//转换时间的函数 调用形式 format(时间变量, 'yyyy-MM-dd HH:mm:ss')
+function format(time, format) {
+    var t = new Date(time);
+    var tf = function (i) {
+        return (i < 10 ? '0' : '') + i
+    };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (a) {
+        switch (a) {
+            case 'yyyy':
+                return tf(t.getFullYear());
+                break;
+            case 'MM':
+                return tf(t.getMonth() + 1);
+                break;
+            case 'mm':
+                return tf(t.getMinutes());
+                break;
+            case 'dd':
+                return tf(t.getDate());
+                break;
+            case 'HH':
+                return tf(t.getHours());
+                break;
+            case 'ss':
+                return tf(t.getSeconds());
+                break;
+        }
+    })
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>user information</title>
+    <!--加载框架-->
+    <link rel="stylesheet" type="text/css" href="../../css/libs/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
+    <!--加载css-->
+    <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lyc/addPartner.css"/>
+</head>
+<body>
+<!--头部-->
+<div id="header">
+    <div class="header-content">
+        <span class="fa fa-cloud logo-icon"></span>
+        <span class="logo-text">后台管理系统</span>
+        <span class="fa fa-pagelines logo-subicon"></span>
+        <div class="user-infor">
+            <img src="../../image/userLogo.png" alt="just a picture"/>
+            <div class="user-detail">
+                <span class="user-identity">管理员</span>
+                <span class="user-name">test<span>|</span><a href="javascript:;">退出</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主内容-->
+<div id="container">
+    <ul class="first-nav">
+        <li><span class="fa fa-twitter"></span>用户管理
+            <ul class="second-nav">
+                <li><a href="#">注册</a></li>
+                <li ><a href="#">修改密码</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-users"></span>内部管理
+            <ul class="second-nav">
+                <li><a href="#">员工管理</a></li>
+                <li><a href="#">部门管理</a></li>
+                <li><a href="#">公告管理</a></li>
+                <li><a href="#">规章制度管理</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-ship"></span>外部管理
+            <ul class="second-nav">
+                <li class="active"><a href="#">业务伙伴管理</a></li>
+                <li><a href="#">合作公司管理</a></li>
+            </ul>
+        </li>
+        <li><span class="fa fa-ship"></span>项目管理
+            <ul class="second-nav">
+                <li><a href="#">项目基本信息</a></li>
+                <li><a href="#">项目阶段信息</a></li>
+                <li><a href="#">项目合作伙伴</a></li>
+                <li><a href="#">项目相关工作人员</a></li>
+            </ul>
+        </li>
+    </ul>
+    <!--这里放置个人的代码-->
+    <div class="main-content">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputUserId" class="col-sm-2 control-label">合作伙伴ID<span>*</span></label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputUserId" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRealName" class="col-sm-2 control-label">姓名<span>*</span></label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputRealName" placeholder="请输入姓名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAdress" class="col-sm-2 control-label">地址</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputAdress" placeholder="请输入地址">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmpumber" class="col-sm-2 control-label">工号<span>*</span></label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputEmpumber" placeholder="请输入工号">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">性别<span>*</span></label>
+                <div class="col-sm-2">
+                    <select id="sex" class="form-control"> 
+                        <option value="man">男</option> 
+                        <option value="woman">女</option>  
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">邮箱<span>*</span></label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputEmail" placeholder="请输入邮箱">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputBirthday" class="col-sm-2 control-label">生日</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputBirthday" placeholder="请输入生日">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputMobilephone" class="col-sm-2 control-label">移动电话</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputMobilephone" placeholder="请输入移动电话">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFixedphone" class="col-sm-2 control-label">固定电话</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputFixedphone" placeholder="请输入固定电话">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputCompanyName" class="col-sm-2 control-label">公司名称<span>*</span></label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputCompanyName" placeholder="请输入公司名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputHeadimg" class="col-sm-2 control-label">上传头像<span>*</span></label>
+                <div class="col-sm-6">
+                  <input type="file" class="form-control" id="inputHeadimg" placeholder="请上传头像">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <button id="save" type="submit" class="btn btn-success">保存设置</button>
+                    <button id="back" type="button" class="btn btn-warning">返回上一页</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--加载框架-->
+<script type="text/javascript" src="../../js/libs/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+<!--加载js-->
+<script type="text/javascript" src="../../js/common/base.js"></script>
+<script type="text/javascript" src="../../js/lyc/addPartner.js"></script>
+</body>
+</html>

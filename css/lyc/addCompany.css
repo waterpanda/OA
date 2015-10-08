@@ -1,0 +1,8 @@
+.form-horizontal {
+    margin: 100px 20px 30px 200px;
+}
+
+    .form-horizontal span{
+        color: red;
+        margin-left: 3px;
+    }
