@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>user information</title>
+    <!--加载框架-->
+    <link rel="stylesheet" type="text/css" href="../../css/libs/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
+    <!--加载css-->
+    <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/jl/departmentManage.css"/>
+</head>
+<body>
+<!--头部-->
+<div id="header">
+    <div class="header-content">
+        <span class="fa fa-cloud logo-icon"></span>
+        <span class="logo-text">后台管理系统</span>
+        <span class="fa fa-pagelines logo-subicon"></span>
+        <div class="user-infor">
+            <img src="../../image/userLogo.png" alt="just a picture"/>
+            <div class="user-detail">
+                <span class="user-identity">管理员</span>
+                <span class="user-name">test<span>|</span><a href="javascript:;">退出</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主内容-->
+<div id="container">
+    <ul class="first-nav">
+        <li><span class="fa fa-twitter"></span>用户管理
+            <ul class="second-nav">
+                <li ><a href="#">添加人员</a></li>
+                <li ><a href="#">添加部门</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-users"></span>内部管理
+            <ul class="second-nav">
+                <li><a href="#">员工管理</a></li>
+                <li class="active"><a href="#">部门管理</a></li>
+                <li><a href="#">公告管理</a></li>
+                <li><a href="#">规章制度管理</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-ship"></span>外部管理
+            <ul class="second-nav">
+                <li><a href="#">业务伙伴管理</a></li>
+                <li><a href="#">合作公司管理</a></li>
+            </ul>
+        </li>
+        <li><span class="fa fa-ship"></span>项目管理
+            <ul class="second-nav">
+                <li><a href="#">添加操作</a></li>
+                <li><a href="#">项目查询</a></li>
+                <li><a href="#">项目修改</a></li>
+                <li><a href="#">项目删除</a></li>
+            </ul>
+        </li>
+    </ul>
+    <!--这里放置个人的代码-->
+    <div class="main-content">
+        <div class="first-wrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="success">
+                        <th class="id" style="display: none">id</th>
+                        <th>部门名称</th>
+                        <th>部门电话</th>
+                        <th>部门传真</th>
+                        <th>部门领导</th>
+                        <th>部门等级</th>
+                        <th class="totalnum" style="display: none">totalnum</th>
+                        <th class="isTop" style="display: none">isTop</th>
+                        <th class="superiordeptid" style="display: none">superiordeptid</th>
+                        <th>描述</th>
+                        <th>创建日期</th>
+                        <th>更新日期</th>
+                        <th>管理</th>
+                    </tr>
+                </thead>
+                <tbody id="all-depart-mes">
+                </tbody>
+            </table>
+        </div>
+        <!--模态框-->
+        <div class="modal fade " id="myModal" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>确定删除该部门吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="confirm">确定</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+<!--加载框架-->
+<script type="text/javascript" src="../../js/libs/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+<!--加载js-->
+<script type="text/javascript" src="../../js/common/base.js"></script>
+<script type="text/javascript" src="../../js/jl/departmentManage.js"></script>
+</body>
+</html>

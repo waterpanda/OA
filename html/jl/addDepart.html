@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>user information</title>
+    <!--加载框架-->
+    <link rel="stylesheet" type="text/css" href="../../css/libs/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
+    <!--加载css-->
+    <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/jl/departAdd.css"/>
+</head>
+<body>
+<!--头部-->
+<div id="header">
+    <div class="header-content">
+        <span class="fa fa-cloud logo-icon"></span>
+        <span class="logo-text">后台管理系统</span>
+        <span class="fa fa-pagelines logo-subicon"></span>
+        <div class="user-infor">
+            <img src="../../image/userLogo.png" alt="just a picture"/>
+            <div class="user-detail">
+                <span class="user-identity">管理员</span>
+                <span class="user-name">test<span>|</span><a href="javascript:;">退出</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主内容-->
+<div id="container">
+    <ul class="first-nav">
+        <li><span class="fa fa-twitter"></span>用户管理
+            <ul class="second-nav">
+                <li ><a href="#">添加人员</a></li>
+                <li class="active"><a href="#">添加部门</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-users"></span>内部管理
+            <ul class="second-nav">
+                <li><a href="#">员工管理</a></li>
+                <li><a href="#">部门管理</a></li>
+                <li><a href="#">公告管理</a></li>
+                <li><a href="#">规章制度管理</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-ship"></span>外部管理
+            <ul class="second-nav">
+                <li><a href="#">业务伙伴管理</a></li>
+                <li><a href="#">合作公司管理</a></li>
+            </ul>
+        </li>
+        <li><span class="fa fa-ship"></span>项目管理
+            <ul class="second-nav">
+                <li><a href="#">添加操作</a></li>
+                <li><a href="#">项目查询</a></li>
+                <li><a href="#">项目修改</a></li>
+                <li><a href="#">项目删除</a></li>
+            </ul>
+        </li>
+    </ul>
+    <!--这里放置个人的代码-->
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="content-nav">
+                <li class="status-active" id="commit-li">第一步（注册）</li>
+                <li id="add-mes-li">第二步（添加信息）</li>
+            </div>
+            <div class="content-body">
+                <div id="first-commit-user" style="display: none">
+                    <form class="form-warpper form-horizontal">
+                        <div class="form-group user-type">
+                            <label class=" col-sm-2" >用户类别 </label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="user-type">
+                                    <option value="1">公司员工</option>
+                                    <option value="2">业务伙伴</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-sm-2" for="username">用户名</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="username" class="form-control input-sm  " >
+                                <p class="status username-status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-sm-2" for="inputPassword">密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="inputPassword" class="form-control input-sm col-sm-3" >
+                                <p class="status inputPassword-status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="confirmPassword">确认密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="confirmPassword" class="form-control input-sm"  >
+                                <p class="status confirmPassword-status"></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-success " id="first-submit"> 下一步 </button>
+                    </form>
+                </div>
+                <div id="second-add-mes">
+                    <p>提示：带*标记的为必填项</p>
+                    <div id="second-commit-user">
+                        <form class="form-warpper form-horizontal">
+                            <div class="form-group">
+                                <label class=" col-sm-2" for="realname">*真实姓名</label>
+                                <div class="col-sm-6">
+                                    <input  id="realname" class="form-control input-sm  " >
+                                    <p class="status realname-status"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class=" col-sm-2" for="adress">地址</label>
+                                <div class="col-sm-6">
+                                    <input  id="adress" class="form-control input-sm col-sm-3" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="empnumber">*员工编号</label>
+                                <div class="col-sm-6">
+                                    <input  id="empnumber" class="form-control input-sm"  >
+                                    <p class="status empnumber-status"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="sex">*性别</label>
+                                <div class="col-sm-5">
+                                    <select  id="sex" class="form-control" >
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="birthday">出生日期</label>
+                                <div class="col-sm-6">
+                                    <input  id="birthday" class="form-control input-sm"  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="mobilephone">*手机号码</label>
+                                <div class="col-sm-6">
+                                    <input  id="mobilephone" class="form-control input-sm"  >
+                                    <p class="status mobilephone-status"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="fixedphone">固定电话</label>
+                                <div class="col-sm-6">
+                                    <input type="password" id="fixedphone" class="form-control input-sm"  >
+                                    <p class="status mobilephone-status"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="email">*邮箱</label>
+                                <div class="col-sm-6">
+                                    <input  id="email" class="form-control input-sm"  >
+                                    <p class="status email-status"></p>
+                                </div>
+                            </div>
+                            <!--部门以下拉框的形式实现-->
+                            <div class="form-group">
+                                <label class="col-sm-2" for="deptname">*部门</label>
+                                <div class="col-sm-5">
+                                    <select id="deptname" class="form-control">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!--职位以下拉框的形式实现-->
+                            <div class="form-group">
+                                <label class="col-sm-2" for="positionname">*职位</label>
+                                <div class="col-sm-5">
+                                    <select id="positionname" class="form-control">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="note">简介</label>
+                                <div class="col-sm-6">
+                                    <input type="password" id="note" class="form-control input-sm"  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="headimg">*上传头像</label>
+                                <div class="col-sm-6">
+                                    <input type="file" id="headimg" >
+                                    <p class="status headimg-status"></p>
+                                </div>
+                            </div>
+                            <button class="btn btn-success " id="second-submit"> 完成注册 </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--加载框架-->
+<script type="text/javascript" src="../../js/libs/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+<!--加载js-->
+<script type="text/javascript" src="../../js/common/base.js"></script>
+</body>
+</html>

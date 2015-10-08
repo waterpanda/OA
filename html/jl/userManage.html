@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>user information</title>
+    <!--加载框架-->
+    <link rel="stylesheet" type="text/css" href="../../css/libs/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
+    <!--加载css-->
+    <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/jl/userManage.css"/>
+</head>
+<body>
+<!--头部-->
+<div id="header">
+    <div class="header-content">
+        <span class="fa fa-cloud logo-icon"></span>
+        <span class="logo-text">后台管理系统</span>
+        <span class="fa fa-pagelines logo-subicon"></span>
+        <div class="user-infor">
+            <img src="../../image/userLogo.png" alt="just a picture"/>
+            <div class="user-detail">
+                <span class="user-identity">管理员</span>
+                <span class="user-name">test<span>|</span><a href="javascript:;">退出</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主内容-->
+<div id="container">
+    <ul class="first-nav">
+        <li><span class="fa fa-twitter"></span>用户管理
+            <ul class="second-nav">
+                <li ><a href="#">添加人员</a></li>
+                <li ><a href="#">添加部门</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-users"></span>内部管理
+            <ul class="second-nav">
+                <li class="active"><a href="#">员工管理</a></li>
+                <li><a href="#">部门管理</a></li>
+                <li><a href="#">公告管理</a></li>
+                <li><a href="#">规章制度管理</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-ship"></span>外部管理
+            <ul class="second-nav">
+                <li><a href="#">业务伙伴管理</a></li>
+                <li><a href="#">合作公司管理</a></li>
+            </ul>
+        </li>
+        <li><span class="fa fa-ship"></span>项目管理
+            <ul class="second-nav">
+                <li><a href="#">添加操作</a></li>
+                <li><a href="#">项目查询</a></li>
+                <li><a href="#">项目修改</a></li>
+                <li><a href="#">项目删除</a></li>
+            </ul>
+        </li>
+    </ul>
+    <!--这里放置个人的代码-->
+    <div class="main-content">
+        <div class="first-wrapper" >
+            <table class="table table-bordered">
+                <thead>
+                <tr class="success">
+                    <th class="id" style="display: none">id</th>
+                    <th class="userId" style="display: none">userId</th>
+                    <th>头像</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>工号</th>
+                    <th>生日</th>
+                    <th>手机号码</th>
+                    <th>电话号码</th>
+                    <th>邮箱</th>
+                    <th>地址</th>
+                    <th class="positionId" style="display: none">positionId</th>
+                    <th class="departmentId" style="display: none">departmentId</th>
+                    <th>等级</th>
+                    <th>备注</th>
+                    <th>创建日期</th>
+                    <th>更新日期</th>
+                    <th>管理</th>
+                </tr>
+                </thead>
+                <tbody id="all-user-mes">
+                </tbody>
+            </table>
+        </div>
+        <div class="second-wrap" style="display: none">
+            <div class="content-nav">
+                <li class="status-active headImage-li">修改头像</li>
+                <li class="message-li">修改个人信息</li>
+            </div>
+            <div class="content-body">
+                <div id="headImage-change">
+                    <form  enctype="multipart/form-data">
+                        <label>选择要上传的图片：</label>
+                        <input type="file" name="fileUp" />
+                        <button id="submit-image" class="btn btn-success">上传</button>
+                    </form>
+                </div>
+                <div id="message-change" style="display: none">
+                    <form class="form-warpper form-horizontal">
+                        <div class="form-group">
+                            <label >用户类别 </label>
+                            <select class="form-control" id="user">
+                                <option>公司员工</option>
+                                <option>业务伙伴</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-sm-2" for="username">用户名</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="username" class="form-control input-sm " >
+                                <p class="status username-status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-sm-2" for="inputPassword">密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="inputPassword" class="form-control input-sm col-sm-3" >
+                                <p class="status inputPassword-status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="confirmPassword">确认密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="confirmPassword" class="form-control input-sm"  >
+                                <p class="status confirmPassword-status"></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-success " id="first-submit"> 注册</button>
+                    </form>
+               </div>
+            </div>
+        </div>
+        <!--模态框-->
+        <div class="modal fade " id="myModal" >
+            <div class="modal-dialog">
+·                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>确定删除该员工吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="confirm">确定</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+<!--加载框架-->
+<script type="text/javascript" src="../../js/libs/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+<!--加载js-->
+<script type="text/javascript" src="../../js/common/base.js"></script>
+<script type="text/javascript" src="../../js/jl/userManage.js"></script>
+</body>
+</html>
