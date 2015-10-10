@@ -1,0 +1,12 @@
+.form-horizontal {
+    margin: 30px 20px 30px 100px;
+}
+
+    .form-horizontal span{
+        color: red;
+        margin-left: 3px;
+    }
+
+.addProjectRelated{
+    padding: 100px 10px 10px 150px;
+}

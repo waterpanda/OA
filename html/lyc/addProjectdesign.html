@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>user information</title>
+    <!--加载框架-->
+    <link rel="stylesheet" type="text/css" href="../../css/libs/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
+    <!--加载css-->
+    <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lyc/addPartner.css"/>
+</head>
+<body>
+<!--头部-->
+<div id="header">
+    <div class="header-content">
+        <span class="fa fa-cloud logo-icon"></span>
+        <span class="logo-text">后台管理系统</span>
+        <span class="fa fa-pagelines logo-subicon"></span>
+        <div class="user-infor">
+            <img src="../../image/userLogo.png" alt="just a picture"/>
+            <div class="user-detail">
+                <span class="user-identity">管理员</span>
+                <span class="user-name">test<span>|</span><a href="javascript:;">退出</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主内容-->
+<div id="container">
+    <ul class="first-nav">
+        <li><span class="fa fa-twitter"></span>用户管理
+            <ul class="second-nav">
+                <li><a href="#">注册</a></li>
+                <li ><a href="#">修改密码</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-users"></span>内部管理
+            <ul class="second-nav">
+                <li><a href="#">员工管理</a></li>
+                <li><a href="#">部门管理</a></li>
+                <li><a href="#">公告管理</a></li>
+                <li><a href="#">规章制度管理</a></li>
+            </ul>
+        </li>
+
+        <li><span class="fa fa-ship"></span>外部管理
+            <ul class="second-nav">
+                <li><a href="#">业务伙伴管理</a></li>
+                <li><a href="#">合作公司管理</a></li>
+            </ul>
+        </li>
+        <li><span class="fa fa-ship"></span>项目管理
+            <ul class="second-nav">
+                <li class="active"><a href="#">项目基本信息</a></li>
+                <li><a href="#">项目阶段信息</a></li>
+                <li><a href="#">项目合作伙伴</a></li>
+                <li><a href="#">项目相关工作人员</a></li>
+            </ul>
+        </li>
+    </ul>
+    <!--这里放置个人的代码-->
+    <div class="main-content">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputProjectName" class="col-sm-2 control-label">项目名称</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputProjectName"  placeholder="请输入项目名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputBuildingName" class="col-sm-2 control-label">建筑名称</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputBuildingName" placeholder="请输入建筑名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputNumbers" class="col-sm-2 control-label">项目编号</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputNumbers" placeholder="请输入项目编号">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">是否正在进行</label>
+                <div class="col-sm-2">
+                    <select id="sex" class="form-control"> 
+                        <option value="1">是</option> 
+                        <option value="0">否</option>  
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDescription" class="col-sm-2 control-label">项目介绍</label>
+                <div class="col-sm-6">
+                  <textarea rows="3" class="form-control" id="inputDescription" placeholder="请输入项目介绍"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLocation" class="col-sm-2 control-label">项目地址</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputLocation" placeholder="请输入项目地址">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDateStart" class="col-sm-2 control-label">项目开始日期</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputDateStart" placeholder="请输入项目开始日期">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDateEnd" class="col-sm-2 control-label">项目结束日期</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputDateEnd" placeholder="请输入项目结束日期">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputProgress" class="col-sm-2 control-label">项目进度</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputProgress" placeholder="请输入项目进度">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputProMessage" class="col-sm-2 control-label">项目进度信息</label>
+                <div class="col-sm-6">
+                  <textarea rows="3" class="form-control" id="inputProMessage" placeholder="请输入项目进度信息"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputArea" class="col-sm-2 control-label">项目面积</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputArea" placeholder="请输入项目面积">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputScale" class="col-sm-2 control-label">项目投资规模</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputScale" placeholder="请输入项目投资规模">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputImage" class="col-sm-2 control-label">上传项目图片</label>
+                <div class="col-sm-6">
+                  <input type="file" class="form-control" id="inputmage" placeholder="请上传项目图片">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEffectPic" class="col-sm-2 control-label">上传项目效果图</label>
+                <div class="col-sm-6">
+                  <input type="file" class="form-control" id="inputEffectPic" placeholder="请上传项目效果图">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEffectVideo" class="col-sm-2 control-label">上传项目效果视频</label>
+                <div class="col-sm-6">
+                  <input type="file" class="form-control" id="inputEffectVideo" placeholder="请上传项目效果视频">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputCreatTime" class="col-sm-2 control-label">创建时间</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputCreatTime" placeholder="请输入创建时间">
+                </div>
+            </div><div class="form-group">
+                <label for="inputLastModifyDate" class="col-sm-2 control-label">最后调整时间</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputLastModifyDate" placeholder="请输入最后调整时间">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <button id="save" type="submit" class="btn btn-success">保存设置</button>
+                    <button id="back" type="button" class="btn btn-warning">返回上一页</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--加载框架-->
+<script type="text/javascript" src="../../js/libs/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+<!--加载js-->
+<script type="text/javascript" src="../../js/common/base.js"></script>
+<script type="text/javascript" src="../../js/lyc/addProjectdesign.js"></script>
+</body>
+</html>
