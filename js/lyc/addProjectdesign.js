@@ -43,9 +43,6 @@ $(function(){
             promessage:$("#inputProMessage").val(),
             area:$("#inputArea").val(),
             scale:$("#inputScale").val(),
-            image:$("#image").val(),
-            effectpic:$("#effectPic").val(),
-            effectvideo:$("#effectVideo").val(),
             creattime:$("#inputCreatTime").val(),
             lastModifyDate:$("#inputLastModifyDate").val()
         };
@@ -57,6 +54,39 @@ $(function(){
         if(check==1){
             return false;
         };
+        //上传项目图片
+        var thisID =$("#inputProjectId").val();
+        $.ajaxFileUpload({
+            url:"/partner/addimage/"+thisID,
+            secureuri: false,
+            fileElementId: "image",
+            dataType:"JSON",
+            success:function(data){
+                $("#image").attr("src",data);
+            }
+        })
+        //提交项目效果图
+        $.ajaxFileUpload({
+            url:"/partner/addeffectPic/"+thisID,
+            secureuri: false,
+            fileElementId: "effectPic",
+            dataType:"JSON",
+            success:function(data){
+                $("#effectPic").attr("src",data);
+            }
+        })
+        //提交效果视频
+        $.ajaxFileUpload({
+            url:"/partner/addVieo/"+thisID,
+            secureuri: false,
+            fileElementId: "effectVideo",
+            dataType:"JSON",
+            success:function(data){
+                $("#effectVideo").removeAttr("style");
+                $("#effectVideo").attr("src",data);
+            }
+        })
+        //提交表单
         $.ajax({
             url:"/project/addproject",
             type:"POST",

@@ -202,11 +202,7 @@ function saveProjectDesign(){
             progress:$("#inputProgress").val(),
             promessage:$("#inputProMessage").val(),
             area:$("#inputArea").val(),
-            scale:$("#inputScale").val(),
-            image:$("#image").val(),
-            effectpic:$("#effectPic").val(),
-            effectvideo:$("#effectVideo").val()
-
+            scale:$("#inputScale").val()
         };
         for(var i=0;i<inputBox.length;i++){
             if($(".form-group").eq(i).hasClass("has-error")){
@@ -216,6 +212,38 @@ function saveProjectDesign(){
         if(check==1){
             return false;
         };
+        //上传项目图片
+        var thisID =$("#inputProjectId").val();
+        $.ajaxFileUpload({
+            url:"/partner/addimage/"+thisID,
+            secureuri: false,
+            fileElementId: "image",
+            dataType:"JSON",
+            success:function(data){
+                $("#image").attr("src",data);
+            }
+        })
+        //提交项目效果图
+        $.ajaxFileUpload({
+            url:"/partner/addeffectPic/"+thisID,
+            secureuri: false,
+            fileElementId: "effectPic",
+            dataType:"JSON",
+            success:function(data){
+                $("#effectPic").attr("src",data);
+            }
+        })
+        //提交效果视频
+        $.ajaxFileUpload({
+            url:"/partner/addVieo/"+thisID,
+            secureuri: false,
+            fileElementId: "effectVideo",
+            dataType:"JSON",
+            success:function(data){
+                $("#effectVideo").attr("src",data);
+            }
+        })
+        //提交表单
         $.ajax({
             url:"/project/updateproject",
             type:"POST",
@@ -312,7 +340,7 @@ function getAllProjectDesign(){
                 var projectDesignData = eval(projectdesign);
                 $.each(projectDesignData, function (index, el) {
                    // var url = el.pictureObj ? el.pictureObj.url : '';
-                    strHTML += "<tr>"+"<td>"+ el.projectDesignId +"</td>";
+                    strHTML += "<tr>"+"<td class='id'>"+ el.projectDesignId +"</td>";
                     strHTML += "<td>" + el.projectName +"</td>";
                     strHTML += "<td>" + el.number+ "</td>";
                     strHTML += "<td>" + el.isGoing + "</td>";

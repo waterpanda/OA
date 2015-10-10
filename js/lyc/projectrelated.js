@@ -45,7 +45,7 @@ function editorProjectRelated(){
         }]
         /*$.ajax({
                 type: "GET",
-                url: "company/getCompany/" + thisID, //这个链接是错误的
+                url: "http://localhost:8080/OA/projectRelated/queryRelatedPartnersById/" + thisID, 
                 success: function (data) {
                     if (data.status == 0) {
                         var projectRelatedData=eval(data.body);*/
@@ -146,7 +146,7 @@ function getAllProjectRelated(){
                 var projectRelatedData = eval(projectRelated);
                 $.each(projectRelatedData, function (index, el) {
                    // var url = el.pictureObj ? el.pictureObj.url : '';
-                    strHTML += "<tr>"+"<td style='display:none;'>"+ el.id +"</td>";
+                    strHTML += "<tr>"+"<td style='display:none;' class='id'>"+ el.id +"</td>";
                     strHTML += "<td>" + el.roleId +"</td>";
                     strHTML += "<td>" + el.partnerId+ "</td>";
                     strHTML += "<td>" + el.projectId + "</td>";

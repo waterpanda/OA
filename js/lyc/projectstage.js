@@ -47,7 +47,7 @@ function editorProjectStage(){
         }]
         /*$.ajax({
                 type: "GET",
-                url: "company/getCompany/" + thisID, //这个链接是错误的
+                url: "http://localhost:8080/OA/projectStage/queryStageInfoById/" + thisID, 
                 success: function (data) {
                     if (data.status == 0) {
                         var projectStageData=eval(data.body);*/
@@ -170,7 +170,7 @@ function getAllProjectStage(){
                 var projectStageData = eval(projectStage);
                 $.each(projectStageData, function (index, el) {
                    // var url = el.pictureObj ? el.pictureObj.url : '';
-                    strHTML += "<tr>"+"<td style='display:none;'>"+ el.id +"</td>";
+                    strHTML += "<tr>"+"<td style='display:none;' class='id'>"+ el.id +"</td>";
                     strHTML += "<td>" + el.projectId +"</td>";
                     strHTML += "<td>" + el.stage+ "</td>";
                     strHTML += "<td>" + el.message + "</td>";

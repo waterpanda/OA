@@ -117,8 +117,7 @@ function savePartner(){
             birthday:$("#inputBirthday").val(),
             mobilephone:$("#inputMobilephone").val(),
             fixedphone:$("#inputFixedphone").val(),
-            companyname:$("#inputCompanyName").val(),
-            headimg:$("#inputHeadimg").val()
+            companyname:$("#inputCompanyName").val()
         };
         for(var i=0;i<inputBox.length;i++){
             if($(".form-group").eq(i).hasClass("has-error")){
@@ -128,6 +127,18 @@ function savePartner(){
         if(check==1){
             return false;
         };
+        //上传头像
+        var thisID =$("#inputId").val();
+        $.ajaxFileUpload({
+            url:"/partner/addheadimg/"+thisID,
+            secureuri: false,
+            fileElementId: "inputHeadimg",
+            dataType:"JSON",
+            success:function(data){
+                $("#headimg").attr("src",data);
+            }
+        })
+        //提交表单
         $.ajax({
             url:"/partner/editPartners",
             type:"POST",

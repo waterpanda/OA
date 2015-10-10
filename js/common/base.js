@@ -16,7 +16,7 @@ function navChange() {
 
     $(".second-nav li:eq(1)").click(function () {
         location.href = "../jl/addDepart.html";
-    }).css("display","none");
+    });
     $(".second-nav li:eq(2)").click(function () {
         location.href = "../jl/userManage.html";
     });
@@ -28,7 +28,6 @@ function navChange() {
     });
     $(" .second-nav li:eq(5)").click(function () {
         location.href = "../jl/rulesManage.html";
-<<<<<<< HEAD
     })
     $(" .second-nav li:eq(6)").click(function(){
         location.href="../../html/lyc/partner.html";
@@ -48,9 +47,6 @@ function navChange() {
     $(" .second-nav li:eq(11)").click(function(){
         location.href="../../html/lyc/projectrelatedemp.html";
     })
-=======
-    })
->>>>>>> JLraining/master
 
 }
 
