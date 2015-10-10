@@ -5,7 +5,6 @@ $(function(){
     var array = [0,1];
     //检查输入框是否为空
     checkNull(array);
-    codePicture();
     function checkNull(array){
         for(var i=0;i<array.length;i++){
             $(".form-group input").eq(i).blur(function(){
@@ -39,6 +38,7 @@ $(function(){
         if(user.password){
             $("input").eq(1).parents(".form-group").addClass("has-success");
         }
+
         for(var i=0;i<array.length;i++){
             if($(".login-form .form-group").eq(i).hasClass("has-success")){
                 number++;
@@ -50,33 +50,14 @@ $(function(){
 
 
         $.ajax({
-            url:"api/user/login?",
+            url:"/OA/user/adminlogin",
             type:"POST",
             contentType:"application/json",
             data:JSON.stringify(user),
             success:function(data){
-
                 if(data.status == 0){
                     var json = eval(data.body);
-                    sessionStorage.userId = json.id;
-                    var userName = json.name;
-                    location.href="index.html";
-
-                }
-                if(data.status == 7){
-                    $("#login-model .modal-body p").html("用户不存在！");
-                    $("#login-model").modal("toggle");
-                    return null
-                };
-                if(data.status == 9){
-                    $("#login-model .modal-body p").html("密码不正确!");
-                    $("#login-model").modal("toggle");
-                    return null;
-                }
-                if(data.status == 10){
-                    $("#login-model .modal-body p").html("验证码错误!");
-                    $("#login-model").modal("toggle");
-                    return null;
+                    location.href="../jl/userAdd.html";
                 }
                 }
             })

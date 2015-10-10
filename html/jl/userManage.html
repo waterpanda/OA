@@ -105,41 +105,93 @@
                 </div>
                 <div id="message-change" style="display: none">
                     <form class="form-warpper form-horizontal">
-                        <div class="form-group">
-                            <label >用户类别 </label>
-                            <select class="form-control" id="user">
-                                <option>公司员工</option>
-                                <option>业务伙伴</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class=" col-sm-2" for="username">用户名</label>
-                            <div class="col-sm-6">
-                                <input type="password" id="username" class="form-control input-sm " >
-                                <p class="status username-status"></p>
+                            <div class="form-group">
+                                <label class=" col-sm-2" for="realname">*真实姓名</label>
+                                <div class="col-sm-6">
+                                    <input  id="realname" class="form-control input-sm  " >
+                                    <p class="status realname-status"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class=" col-sm-2" for="inputPassword">密码</label>
-                            <div class="col-sm-6">
-                                <input type="password" id="inputPassword" class="form-control input-sm col-sm-3" >
-                                <p class="status inputPassword-status"></p>
+                            <div class="form-group">
+                                <label class=" col-sm-2" for="adress">地址</label>
+                                <div class="col-sm-6">
+                                    <input  id="adress" class="form-control input-sm col-sm-3" >
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2" for="confirmPassword">确认密码</label>
-                            <div class="col-sm-6">
-                                <input type="password" id="confirmPassword" class="form-control input-sm"  >
-                                <p class="status confirmPassword-status"></p>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="empnumber">*员工编号</label>
+                                <div class="col-sm-6">
+                                    <input  id="empnumber" class="form-control input-sm"  >
+                                    <p class="status empnumber-status"></p>
+                                </div>
                             </div>
-                        </div>
-                        <button class="btn btn-success " id="first-submit"> 注册</button>
-                    </form>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="sex">*性别</label>
+                                <div class="col-sm-5">
+                                    <select  id="sex" class="form-control" >
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="birthday">出生日期</label>
+                                <div class="col-sm-6">
+                                    <input  id="birthday" class="form-control input-sm"  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="mobilephone">*手机号码</label>
+                                <div class="col-sm-6">
+                                    <input  id="mobilephone" class="form-control input-sm"  >
+                                    <p class="status mobilephone-status"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="fixedphone">固定电话</label>
+                                <div class="col-sm-6">
+                                    <input type="password" id="fixedphone" class="form-control input-sm"  >
+                                    <p class="status mobilephone-status"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="email">*邮箱</label>
+                                <div class="col-sm-6">
+                                    <input  id="email" class="form-control input-sm"  >
+                                    <p class="status email-status"></p>
+                                </div>
+                            </div>
+                            <!--部门以下拉框的形式实现-->
+                            <div class="form-group">
+                                <label class="col-sm-2" for="deptname">*部门</label>
+                                <div class="col-sm-5">
+                                    <select id="deptname" class="form-control">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!--职位以下拉框的形式实现-->
+                            <div class="form-group">
+                                <label class="col-sm-2" for="positionname">*职位</label>
+                                <div class="col-sm-5">
+                                    <select id="positionname" class="form-control">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="note">简介</label>
+                                <div class="col-sm-6">
+                                    <input type="password" id="note" class="form-control input-sm"  >
+                                </div>
+                            </div>
+                            <button class="btn btn-success " id="second-submit"> 修改 </button>
+                        </form>
                </div>
             </div>
         </div>
         <!--模态框-->
-        <div class="modal fade " id="myModal" >
+        <div class="modal fade " id="myModal1" >
             <div class="modal-dialog">
 ·                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -160,6 +212,7 @@
 <!--加载框架-->
 <script type="text/javascript" src="../../js/libs/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/libs/ajaxfileupload.js"></script>
 <!--加载js-->
 <script type="text/javascript" src="../../js/common/base.js"></script>
 <script type="text/javascript" src="../../js/jl/userManage.js"></script>

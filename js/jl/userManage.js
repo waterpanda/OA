@@ -69,22 +69,21 @@ function getAlluser(currentPage){
   //           //  var userData = eval(data.body);
                 var strHTML="";
                 var userData = eval(user);
-                console.log(user);
                 $.each(userData, function (index, el) {
                    // var url = el.pictureObj ? el.pictureObj.url : '';
-                    strHTML += "<tr><td class='id' style='display: none'>+el.id +</td>";
+                    strHTML += "<tr><td class='id' style='display: none'>"+ el.id +"</td>";
                     strHTML += "<td class=userId' style='display: none'>" + el.userId+ "</td>";
                     strHTML += "<td><img class='headImg' src="+el.headimg+"></td>";
-                    strHTML += "<td>" + el.realname + "</td>";
-                    strHTML += "<td>" + el.sex + "</td>";
-                    strHTML += "<td>" + el.empnumber + "</td>";
-                    strHTML += "<td>" + format(el.birthday, 'yyyy-MM-dd ') + "</td>";
-                    strHTML += "<td>" + el.mobilephone + "</td>";
-                    strHTML += "<td>" + el.fixedphone + "</td>";
-                    strHTML += "<td>" + el.email + "</td>";
-                    strHTML += "<td>"+el.address+"</td>";
-                    strHTML += "<td class='positionId' style='display: none'>+el.positionId +</td>";
-                    strHTML += "<td class='departmentId' style='display: none'>+el.departmentId +</td>";
+                    strHTML += "<td class='realname'>" + el.realname + "</td>";
+                    strHTML += "<td class='sex'>" + el.sex + "</td>";
+                    strHTML += "<td class='empnumber'>" + el.empnumber + "</td>";
+                    strHTML += "<td class='birthday'>" + format(el.birthday, 'yyyy-MM-dd ') + "</td>";
+                    strHTML += "<td class='mobilephone'>" + el.mobilephone + "</td>";
+                    strHTML += "<td class='fixedphone'>" + el.fixedphone + "</td>";
+                    strHTML += "<td class='email'>" + el.email + "</td>";
+                    strHTML += "<td class='adress'>"+el.address+"</td>";
+                    strHTML += "<td class='positionId' style='display: none'>"+el.positionId +"</td>";
+                    strHTML += "<td class='departmentId' style='display: none'>"+el.departmentId +"</td>";
                     strHTML += "<td>" + el.grade + "</td>";
                     strHTML += "<td>" + el.note+ "</td>";
                     strHTML += "<td>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
@@ -101,7 +100,7 @@ function getAlluser(currentPage){
 //删除用户
 function deleteUser(){
     $(document).on("click",".delect-user",function(){
-        $('#myModal').modal('toggle');
+        $('#myModal1').modal('toggle');
         var thisID = $(this).parents("tr").children(".id").html();
         $(document).on("click","#confirm",function(){
             $.ajax({
@@ -123,6 +122,8 @@ function modifyUser(){
     $(document).on("click",".modify-user",function(){
         //储存当前选中员工的信息
         //页面变化
+        var userId =  $(this).parents("tr").children(".id").html();
+        console.log(userId);
         $(".first-wrapper").hide();
         $(".second-wrap").show();
         modifyImage();
@@ -144,6 +145,7 @@ function modifyUser(){
                 $(".headImage-li").removeClass("status-active");
                 $("#headImage-change").hide();
                 $("#message-change").show();
+
             });
         }
     })

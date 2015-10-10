@@ -7,10 +7,47 @@
 $(function(){
     checkNull();
     checkIsSame();
+    getAllDepartment();//下拉框获取所有部门内容
+    getAllposition();//获取所有职位信息
     firstRegister();//第一次注册事件
     secondRegister();//第二次注册事件
 });
-
+//下拉框获取所有部门内容
+function getAllDepartment(){
+   $.ajax({
+      url:"/OA/department/getDepartmentname",
+      type:"POST",
+      contentType:"application/json",
+      success:function(data) {
+          if (data.status == 0) {
+              var Data = eval(data.body);
+              var strHTML = "";
+              $.each(Data, function (index, el) {
+                  strHTML += "<option value="+el.name+">" + el.name + "</<option>";
+              })
+              $("#deptname").html(strHTML);
+          }
+      }
+   })
+}
+//获取所有职位信息
+function getAllposition(){
+    $.ajax({
+        url:"/OA/position/getpositionname",
+        type:"POST",
+        contentType:"application/json",
+        success:function(data) {
+            if (data.status == 0) {
+                var Data = eval(data.body);
+                var strHTML = "";
+                $.each(Data, function (index, el) {
+                    strHTML += "<option value="+el.name+">" + el.name + "</<option>";
+                })
+                $("#positionname").html(strHTML);
+            }
+        }
+    })
+}
 //init
 
 //第一次激活状态
