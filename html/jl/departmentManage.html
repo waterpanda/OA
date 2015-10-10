@@ -63,6 +63,7 @@
     <!--这里放置个人的代码-->
     <div class="main-content">
         <div class="first-wrapper">
+            <button class="btn btn-primary " id="add-department">添加部门</button>
             <table class="table table-bordered">
                 <thead>
                     <tr class="success">
@@ -84,6 +85,46 @@
                 <tbody id="all-depart-mes">
                 </tbody>
             </table>
+        </div>
+        <div class="second-wrap" style="display: none">
+            <button class="btn btn-warning" id="go-back-modify">返回</button>
+            <div class="content-nav">
+                <li class="message-li status-active">修改部门信息</li>
+            </div>
+            <div class="content-body">
+                <div id="message-change">
+                    <form class="form-warpper form-horizontal">
+                        <div class="form-group">
+                            <label class=" col-sm-2" for="realname">部门名称</label>
+                            <div class="col-sm-6">
+                                <input  id="realname" class="form-control input-sm  " >
+                                <p class="status realname-status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class=" col-sm-2" for="deptphone">部门电话</label>
+                            <div class="col-sm-6">
+                                <input  id="deptphone" class="form-control input-sm col-sm-3" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="empnumber">部门传真</label>
+                            <div class="col-sm-6">
+                                <input  id="empnumber" class="form-control input-sm"  >
+                                <p class="status empnumber-status"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2" for="describle">部门描述</label>
+                            <div class="col-sm-6">
+                                <input  id="describle" class="form-control input-sm"  >
+                                <p class="status describle-status"></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-sm " id="second-submit"> 提交修改 </button>
+                    </form>
+                </div>
+            </div>
         </div>
         <!--模态框-->
         <div class="modal fade " id="myModal" >

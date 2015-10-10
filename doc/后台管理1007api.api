@@ -1,0 +1,1202 @@
+BASE_URL:http://115.28.34.72:8080/OA
+
+API设计
+用户注册
+URL：“/user/regist”
+Method:POST
+    Request : {
+      "charactar":1或是2,  1代表本公司  2代表业务伙伴  int类型
+      "username":"test",  String类型
+      "password":"test"   String类型
+    }
+    URL params:null
+    Response:
+    {
+    "status": 0,
+    "body": {
+        "userId": 41
+    },
+    "message": "注册用户成功"
+}
+管理员登录
+URL:"/user/adminlogin"
+Method：POST
+
+Request:{
+"username":"test24",
+"password":"123321"
+}
+Response{
+"status": 0,
+    "body": {
+        "id": 37,
+        "status": null,
+        "charactar": 3,
+        "username": "text24",
+        "password": "",
+        "subtoken": null,
+        "voippwd": null,
+        "subaccountsid": null,
+        "voipaccount": null,
+        "lastloginDate": null,
+        "lastloginip": null,
+        "validatacode": null,
+        "outdate": null,
+        "createDate": 1444201208000,
+        "lastModifyDate": 1444201208000
+    },
+    "message": "登录成功",
+    "currentPage": 0,
+    "totalPage": 0
+}
+
+获取职位名称
+URL:"/position/getpositionname"
+
+Method：POST
+Request{NULL
+}
+Response{
+ {
+        "name": "建筑工程师"
+    },
+    {
+        "name": "董事长"
+    },
+    {
+        "name": "部门负责人"
+    },
+    {
+        "name": "总经理"
+    },
+    {
+        "name": "普通员工"
+    },
+    {
+        "name": "劳务派遣"
+    },
+    {
+        "name": "党委书记"
+    },
+    {
+        "name": "副部长"
+    },
+    {
+        "name": "部长"
+    },
+    {
+        "name": "副总经理"
+    },
+    {
+        "name": "纪委委员"
+    }
+}
+查询员工信息（分页查询）
+URL：“/employee/query"
+Method:POST
+Request{
+"pageSize"=3 (当前页面所要显示的个数)
+"currentPage"=1( 当前页数)
+Response：  
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 11,
+            "userId": 13,
+            "realname": "孟琦",
+            "empnumber": "2354",
+            "address": "公司总部",
+            "sex": "女",
+            "birthday": 791913600000,
+            "mobilephone": "345",
+            "fixedphone": "235434",
+            "email": "2452106414@qq.com",
+            "positionId": 1,
+            "departmentId": 3,
+            "grade": 5,
+            "headimg": "image.jpg",
+            "note": "工作认真负责",
+            "createDate": 1440430495000,
+            "lastModifyDate": 1440430498000
+        },
+        {
+            "id": 12,
+            "userId": 14,
+            "realname": "海明",
+            "empnumber": "34",
+            "address": "公司总部",
+            "sex": "男",
+            "birthday": 791913600000,
+            "mobilephone": "35",
+            "fixedphone": "2345",
+            "email": "123@sohu.com",
+            "positionId": 1,
+            "departmentId": 4,
+            "grade": 2,
+            "headimg": "image.jpg",
+            "note": "工作认真负责",
+            "createDate": 1440433262000,
+            "lastModifyDate": 1440433265000
+        },
+        {
+            "id": 13,
+            "userId": 15,
+            "realname": "袁旭",
+            "empnumber": "234",
+            "address": "公司总部",
+            "sex": "男",
+            "birthday": 1440777600000,
+            "mobilephone": "346",
+            "fixedphone": "643",
+            "email": "123@sohu.com",
+            "positionId": null,
+            "departmentId": 10,
+            "grade": 3,
+            "headimg": "image.jpg",
+            "note": "工作认真负责",
+            "createDate": 1440859755000,
+            "lastModifyDate": 1440859757000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 1,
+    "totalPage": 5
+}
+}
+
+通过ID查询某一个具体员工信息
+URL：“employee/getEmployeeById/{id}"  
+    Method:GET
+    URL params:{  
+    "id"
+    }
+  Response：{
+	  "status": 0,
+	  "body": {
+	    "position": [
+	      "总经理",
+	     
+	    ],
+	    "employee": {
+	      "id": 11,
+	      "userId": 13,
+	      "realname": "孟琦",
+	      "empnumber": null,
+	      "address": null,
+	      "sex": null,
+	      "birthday": null,
+	      "mobilephone": null,
+	      "fixedphone": null,
+	      "email": "2452106414@qq.com",
+	      "positionId": 1,
+	      "departmentId": 3,
+	      "grade": null,
+	      "headimg": null,
+	      "note": null,
+	      "createDate": 1440430495000,
+	      "lastModifyDate": 1440430498000
+	    }
+	  },
+	  "message": "查询成功"
+	}
+
+
+
+
+
+
+
+
+
+
+
+添加员工
+//（在注册页面选择员工，跳转到此页面注册添加）
+URL:“/employee/addemployee”
+Method=POST
+Request：{ ”*“ 表示必填
+      *“userId”：根据之前用户注册界面的userId将其返回到此页面 
+	  *"realname"：String类型    
+         “adress” ： String类型 家庭住址		  
+	  *“empnumber”：Ingeter类型 员工编号
+	  *”sex“：      String类型，性别（男/女）
+	   ”birthday“： Date类型，生日
+	  *”mobilephone“：Integer类型 移动电话
+	   ”fixedphone“：Integer类型 固定电话
+	  * “email”： String 类型  邮箱
+	  * ”deptname“： String类型 部门（以下拉框的形式选择）
+	  * ”positionname“：String 类型 职位（以下拉框的形式选择）
+	    “note”：       String类型 简介
+	  * “headimg”：    String类型 上传头像
+      
+}
+URL params:null
+    Response:
+	{
+    "status": 0,
+    "body": null
+	}
+	
+	
+更新员工信息
+//
+URL：“/employee/employeeModify“
+Method=POST;
+Request：{
+ * “id”：将当前员工的注册id返回，不可更改；
+   “userId”：Integer 类型
+    "realname"：String类型   
+    “adress” ： String类型 家庭住址	
+	 empnumber”：Ingeter类型 员工编号
+	 ”sex“：      String类型，性别（男/女）
+	 ”birthday“： Date类型，生日
+	  ”mobilephone“：Integer类型 移动电话
+	   ”fixedphone“：Integer类型 固定电话
+	   “email”： String 类型  邮箱
+	   ”deptname“： String类型 部门（以下拉框的形式选择）
+	   ”positionname“：String 类型 职位（以下拉框的形式选择）
+	    “note”：       String类型 简介
+	   “headimg”：    String类型 修改头像
+ }
+ URL params:null
+    Response:
+	{
+    "status": 0,
+    "body": null
+	}
+	
+	
+删除员工
+URL:"/employee/delete/id"
+Method=DELETE;
+Request:null
+URL params:{
+    "id":11
+  }
+   Response:
+   { "status": 0,
+      "body": null
+   }
+	
+查询合作伙伴信息（分页查询）
+URL：“/partner/query"
+Method:POST
+Request{
+"pageSize"=3(当前页面所要显示的个数）
+"currentPage"=1(当前页数)
+}
+Response：
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 1,
+            "userId": 22,
+            "realname": "王健林",
+            "address": "北京",
+            "sex": "男",
+            "birthday": -410256000000,
+            "mobilephone": "235235",
+            "fixedphone": "234234",
+            "email": "234@qq.com",
+            "grade": 10,
+            "position": "董事长",
+            "companyId": 1,
+            "note": "合作愉快",
+            "headimg": "big.jpg",
+            "createDate": 1440864700000,
+            "lastModifyDate": 1440864702000
+        },
+        {
+            "id": 2,
+            "userId": 23,
+            "realname": "王铭",
+            "address": "河南",
+            "sex": "男",
+            "birthday": -410256000000,
+            "mobilephone": "34534",
+            "fixedphone": "3453",
+            "email": "234@qq.com",
+            "grade": 6,
+            "position": "总经理",
+            "companyId": 2,
+            "note": "河南建工的总经理",
+            "headimg": "lit.jpg",
+            "createDate": 1440864856000,
+            "lastModifyDate": 1440864859000
+        },
+        {
+            "id": 3,
+            "userId": 24,
+            "realname": "张萌",
+            "address": "河南",
+            "sex": "男",
+            "birthday": -410256000000,
+            "mobilephone": "3563465",
+            "fixedphone": "346456",
+            "email": "234@qq.com",
+            "grade": 8,
+            "position": "办公室主任",
+            "companyId": 3,
+            "note": "政府要求保障施工要全",
+            "headimg": "ha.jpg",
+            "createDate": 1440864973000,
+            "lastModifyDate": 1440864976000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 1,
+    "totalPage": 6
+}
+
+通过id查询某个合作伙伴
+
+	URL：“partner/getPartnerById/{id}"  
+		Method:GET
+		 URL params:{  
+		"id"
+    }
+	    {
+	  "status": 0,
+	  "body": {
+	    "partner": {
+	      "id": 1,
+	      "userId": null,
+	      "realname": null,
+	      "address": null,
+	      "mobilephone": null,
+	      "fixedphone": null,
+	      "email": null,
+	      "grade": null,
+	      "position": null,
+	      "companyId": 1,
+	      "note": null,
+	      "headimg": null,
+	      "createDate": null,
+	      "lastModifyDate": null
+	    },
+	    "company": {
+	      "id": 1,
+	      "companyname": "万达集团",
+	      "address": null,
+	      "createDate": 1440398703000,
+	      "lastModifyDate": 1440398707000
+	    }
+	  },
+	  "message": "查询成功"
+	}
+	
+添加合作伙伴
+//（在注册页面选择合作伙伴，跳转到此页面进行注册添加）
+URL:"/partner/addPartners"	  
+Method=POST;
+*"userId”：String 类型 ，根据之前用户注册界面的userId将其返回到此页面
+*“realname”：String 类型
+  “adress” ： String类型 家庭住址	
+ *”empumber“：Integer 类型
+* ”sex“：    String类型，性别（男/女）
+*“email”： String 类型  邮箱
+  ”birthday“： Date类型，生日
+   ”mobilephone“：Integer类型 移动电话
+   ”fixedphone“：Integer类型 固定电话
+  * “companyname”：S听类型 公司名称
+   * “headimg”：    String类型 上传头像
+   }URL params:null
+    Response:
+	{
+    "status": 0,
+    "body": null
+	}
+	
+编辑合作伙伴信息
+URL:"/partner/editPartners"
+Method:POST;
+ * “id”：将当前合作伙伴的注册id返回，不可更改；
+"userId”：String 类型 ，根据之前用户注册界面的ID将其返回到此页面
+“realname”：String 类型
+  “adress” ： String类型 家庭住址	
+ ”empumber“：Integer 类型
+ ”sex“：    String类型，性别（男/女）
+  “email”： String 类型  邮箱
+  ”birthday“： Date类型，生日
+  ”mobilephone“：Integer类型 移动电话
+  ”fixedphone“：Integer类型 固定电话
+  “companyname”：S听类型 公司名称
+  “headimg”：    String类型 修改头像
+  }URL params:null
+    Response:
+	{"status":0,
+	"body":null,
+	"message":"编辑成功"}
+	
+删除合作者
+URL:"/partner/deletePartners/id"
+	Method=DELETE;
+Request:null
+   URL params:{
+    "id":1
+  }
+   Response:
+   { "status": 0,
+      "body": null
+   }
+   
+ 部门管理
+ 显示所有部门
+ URL:"/department/getDepartment
+ Method：GET
+ Request{
+ NULL
+ }
+   Response{ 返回一个数组
+   {"status":0,"body":[{"id":1,
+   "deptname":"工程部",
+   "deptphone":"12334",
+   "deptfax":"12334",
+   "deptleader":null,
+   "deptgrade":2,
+   "totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858077000,
+   "lastModifyDate":1440858081000},
+   {"id":2,
+   "deptname":"技术部",
+   "deptphone":"12334",
+   "deptfax":"12334",
+   "deptleader":null,
+   "deptgrade":3,
+   "totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858084000,
+   "lastModifyDate":1440858086000},
+   {"id":3,"deptname":"安检部",
+   "deptphone":"12334",
+   "deptfax":"12334",
+   "deptleader":null,
+   "deptgrade":1,
+   "totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858090000,
+   "lastModifyDate":1440858092000},
+   {"id":4,"deptname":
+   "财务部","deptphone":
+   "12334","deptfax":"12334"
+   ,"deptleader":null,
+   "deptgrade":2,"
+   totalnum":100,
+   "isTop":1,
+   "superiordeptid":0,
+   "describe":null,
+   "createDate":1440858096000,
+   "lastModifyDate":1440858099000},
+   ,.....
+   ],"message":"查询成功"}
+   根据需要只显示id以及对应的部门名称
+   }
+   
+   根据id查询部门
+   URL："/department//getDepartment/{id}"
+   Method：GET
+   URL params:{
+    "id":2
+  }	
+  Request{
+  null
+  }
+  Response{
+   "status": 0,
+    "body": {
+        "id": 2,
+        "deptname": "技术部", *
+        "deptphone": "12334", *
+        "deptfax": "12334",   *
+        "deptleader": null,
+        "deptgrade": 3,
+        "totalnum": 100,
+        "isTop": 1,
+        "superiordeptid": 0,
+        "describe": null,
+        "createDate": 1440858084000,
+        "lastModifyDate": 1440858086000
+    },
+    "message": "查询成功",
+    "currentPage": 0,
+    "totalPage": 0
+
+  }
+	   
+	添加部门
+URL:“/department/add”
+Method:POST
+Request{
+“id”：Integer类型 
+"deptname":String类型, 部门名称
+"deptname"：工程部
+"deptphone":12334  电话
+deptfax:12334       传真
+"describle":致力于公司健康发展 
+
+}	
+Response{
+"status": 0,
+"body": null
+“message”：添加成功；
+
+}
+编辑部门
+ URL:"/department/update"
+ Method:POST
+ Request{
+“id”：1Integer类型 
+"deptname"：工程部
+"deptphone":12334  电话
+deptfax:12334       传真
+"describle":致力于公司健康发展 
+
+}Response{
+"status": 0,
+"body": null
+“message”：添加成功；
+
+}
+
+部门名称
+URL:"/department/getDepartmentname" Method：POST;
+Request{
+ NULL
+ }
+Response:{
+{"name":"工程部"},
+{"name":"技术部"},
+{"name":"安检部"},
+{"name":"财务部"},
+{"name":"人事部"},
+{"name":"设备部"}
+....}
+
+公司管理
+查询所有公司（分页）
+URL："/company/query"
+Method:POST
+Request{
+"pageSize"=3(当前页面所要显示的个数）
+"currentPage"=2(当前页数)
+}
+Response{
+
+    "status": 0,
+    "body": [
+        {
+            "id": 4,
+            "companyname": "河南省安阳市政府",
+            "address": "河南安阳",
+            "createDate": 1440429806000,
+            "lastModifyDate": 1440429810000
+        },
+        {
+            "id": 5,
+            "companyname": "中国建筑工程总公司",
+            "address": "北京建筑路",
+            "createDate": 1440429838000,
+            "lastModifyDate": 1440429840000
+        },
+        {
+            "id": 6,
+            "companyname": "宝钢集团",
+            "address": "天津市",
+            "createDate": 1440429857000,
+            "lastModifyDate": 1440429860000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 2,
+    "totalPage": 5
+}
+
+通过ID查询某个公司
+URL："company/getCompany/{id}"
+Method：GET
+Request:null
+   URL params:{
+    "id":1
+	}
+Response{
+"status": 0,
+    "body": {
+        "id": 2,
+        "companyname": "河南建工集团",
+        "address": "河南郑州",
+        "createDate": 1440398709000,
+        "lastModifyDate": 1440398713000
+    },
+    "message": "查询成功",
+    "currentPage": 0,
+    "totalPage": 0
+}
+
+添加公司信息
+URL："/company/add"
+Method：POST
+Request{
+"id":"16",
+"companyname":"中电十所",
+"address":"北京"
+}
+Response{
+ "status": 0,
+    "body": null,
+    "message": "添加成功",
+    "currentPage": 0,
+    "totalPage": 0
+
+
+}
+修改公司信息
+URL："/company/update"
+Method：POST
+Request{
+"id":"16",
+"companyname":"中电十五所",
+"address":"北京"
+}
+Response{
+ "status": 0,
+    "body": null,
+    "message": "修改成功",
+    "currentPage": 0,
+    "totalPage": 0
+}
+删除公司
+URL："company/delete/id"
+Method：DELETE
+Request:NULL
+URL params:{
+    "id":16
+  }	
+Response{	
+
+    "status": 0,
+    "body": null,
+    "message": "删除成功",
+    "currentPage": 0,
+    "totalPage": 0
+}
+	
+	
+	
+	
+查询用户信息（分页查询）
+URL：“/user/query"
+Method:GET
+Response：
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 13,
+            "status": false,
+            "charactar": 1,
+            "username": "test",
+            "password": "098f6bcd4621d373cade4e832627b4f6",
+            "lastloginDate": 1440777600000,
+            "lastloginip": "192.168.1.1",
+            "validatacode": "1234",
+            "outdate": 1440860075000,
+            "createDate": 1440310318000,
+            "lastModifyDate": 1440453174000
+        },
+	    "message": null
+}
+项目管理
+显示所有项目基本信息
+URL："/projectdesign/query"
+Method：GET
+Request{
+"pageSize"=3(当前页面所要显示的个数）
+"currentPage"=1(当前页数)
+}
+Response{
+ "status": 0,
+    "body": [
+        {
+            "id": 1,
+            "projectName": "南京体院项目",
+            "buildingName": "南京体院体育馆",
+            "number": "A014-08-06-08",
+            "isGoing": 0,
+            "description": "项目位于市中心热门地段，能够很好的实现项目规划是提出的实现要求",
+            "location": "南京",
+            "area": "45676",
+            "scale": "456745",
+            "datestart": 1408809600000,
+            "dateend": 1440345600000,
+            "image": "image.jpg",
+            "effectpic": "image.jpg",
+            "effectvideo": "video.mp4",
+            "progress": "39",
+            "promessage": "现阶段负责人为工程部刘晓伟，规划等工作已经完成，",
+            "grade": 3,
+            "createDate": 1440430350000,
+            "lastModifyDate": 1440430354000
+        },
+        {
+            "id": 2,
+            "projectName": "安钢御水园项目",
+            "buildingName": "安钢御水园综合体",
+            "number": "A014-08-06-08",
+            "isGoing": 1,
+            "description": "项目位于市中心热门地段，能够很好的实现项目规划是提出的实现要求",
+            "location": "北京",
+            "area": "6800",
+            "scale": "100",
+            "datestart": 1440345600000,
+            "dateend": 1471968000000,
+            "image": "image.jpg",
+            "effectpic": "image.jpg",
+            "effectvideo": "video.mp4",
+            "progress": "37",
+            "promessage": "现阶段负责人为工程部刘晓伟，规划等工作已经完成，",
+            "grade": 2,
+            "createDate": 1440430356000,
+            "lastModifyDate": 1440430358000
+        },
+        {
+            "id": 3,
+            "projectName": "北京奥运会开幕式",
+            "buildingName": "北京奥运会",
+            "number": "165185496",
+            "isGoing": 0,
+            "description": "在北京五棵松",
+            "location": "鸟巢",
+            "area": "5464",
+            "scale": "4564346",
+            "datestart": 1407427200000,
+            "dateend": 1220112000000,
+            "image": "/image/2015_09_28_14_59_17image0.2时新方法Ber性能比较.PNG",
+            "effectpic": "/image/2015_09_28_14_59_17effectPicCFO=0.2时.PNG",
+            "effectvideo": "/mp4/2015_09_28_14_59_17effectvideo爱情公寓 - 我的未来式.mp3",
+            "progress": "100",
+            "promessage": "现阶段是周成全权负责",
+            "grade": 4,
+            "createDate": 1440952400000,
+            "lastModifyDate": 1443423557000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 1,
+    "totalPage": 6
+	}
+
+
+
+添加项目基本信息
+URL：“/project/addproject”，Method：POST
+Request{
+“projectname”：项目名称，类型String *
+“buildingname”：建筑名称，类型String *
+"number"       ：项目编号， 类型String
+"isgong"       ：是否正进行，1	表示是，0表示未进行
+"description"  ：项目介绍 String类型       
+"location"     ：项目地址 String类型  
+"dateStart"    ： 项目开始日期      Date类型 2015/09/29    *
+"dateEnd"      ： 预计项目结束日期      *
+"progress"     : 项目进度             String类型 36（%）
+"proMessage"   ：项目进度信息      String类型
+"area"         :项目面积            String类型
+“scale”        ：项目投资规模      String类型
+"image"        ： 项目图片   String类型
+”effectPic“    ：项目效果图  String类型
+"effectVideo"  :项目效果视频 String类型
+"creattime"    :创建时间     datetime
+"lastModifyDate": 最后调整时间  datetime
+
+
+
+}
+Response：{
+{"status":0,
+"body":null,
+"message":"添加成功",
+"currentPage":0,"totalPage":0}
+}
+
+修改项目基本信息
+URL："/project/updateproject"
+Method：POST
+Request{
+"id"          :项目id，不可更改
+“projectname”：项目名称，类型String *
+“buildingname”：建筑名称，类型String *
+"number"       ：项目编号， 类型String
+"isgong"       ：是否正进行，1	表示是，0表示未进行
+"description"  ：项目介绍 String类型       
+"location"     ：项目地址 String类型  
+"dateStart"    ： 项目开始日期      Date类型 2015/09/29    *
+"dateEnd"      ： 预计项目结束日期      *
+"progress"     : 项目进度             String类型 36（%）
+"proMessage"   ：项目进度信息      String类型
+"area"         :项目面积            String类型
+“scale”        ：项目投资规模      String类型
+"image"        ： 项目图片   String类型
+”effectPic“    ：项目效果图  String类型
+"effectVideo"  :项目效果视频 String类型
+
+
+
+
+}
+
+Response：{
+{"status":0,
+"body":null,
+"message":"修改成功",
+"currentPage":0,"totalPage":0}
+}
+
+
+删除项目
+URL："/project/delete/{id}"
+Method：GET
+URL params{
+"id"=3
+}
+Request{
+null
+}
+Response{
+"status": 0,
+"messgae":删除成功
+body：null
+}
+
+添加项目阶段信息
+URL："/projectStage/addStageInfo"
+Method：POST
+URL params{
+ "stage"
+ "isFinished"
+ "message"
+ "directorId"
+ "projectId"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "添加成功",
+}
+
+修改项目阶段信息
+URL："/projectStage/editStageInfo"
+Method：POST
+URL params{
+ "id"
+ "stage"
+ "isFinished"
+ "message"
+ "directorId"
+ "projectId"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "更新成功",
+}
+
+
+删除项目阶段信息
+URL："/projectStage/deleteStageInfo/{id}"
+Method：DELETE
+URL params{
+ "id"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "用户删除成功",
+}
+
+
+查询项目阶段信息（分页）
+URL："/projectStage/queryStageInfo"
+Method：POST
+URL params{
+ "pageSize"=2
+ "currentPage"=1
+}
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 1,
+            "projectId": 1,
+            "stage": 1,
+            "message": "项目策划及审批",
+            "isFinished": 2,
+            "directorId": 17,
+            "createDate": 1440863963000,
+            "lastModifyDate": 1440863966000
+        },
+        {
+            "id": 2,
+            "projectId": 1,
+            "stage": 2,
+            "message": "方案设计及施工图纸设计",
+            "isFinished": 2,
+            "directorId": 13,
+            "createDate": 1440863968000,
+            "lastModifyDate": 1440863971000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 1,
+    "totalPage": 20
+}
+
+添加项目相关合作伙伴
+URL："/projectRelated/addRelatedPartners"
+Method：POST
+URL params{
+ "roleId"
+ "partnerId"
+ "projectId"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "添加成功",
+}
+
+修改项目相关合作伙伴
+URL："/projectRelated/editRelatedPartners"
+Method：POST
+URL params{
+ "id"
+ "roleId"
+ "partnerId"
+ "projectId"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "更新成功",
+}
+
+删除项目相关合作伙伴
+URL："/projectRelated/deleteRelatedPartner/{id}"
+Method：DELETE
+URL params{
+ "id"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "用户删除成功",
+}
+
+查询项目相关合作伙伴（分页）
+URL："/projectRelated/queryRelatedPartners"
+Method：POST
+URL params{
+ "pageSize"=2
+ "currentPage"=3
+}
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 5,
+            "roleId": 2,
+            "partnerId": 1,
+            "projectId": 2,
+            "createDate": 1440997774000,
+            "lastModifyDate": 1440997870000
+        },
+        {
+            "id": 6,
+            "roleId": 3,
+            "partnerId": 2,
+            "projectId": 2,
+            "createDate": 1440997774000,
+            "lastModifyDate": 1440997870000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 3,
+    "totalPage": 21
+}
+
+添加项目相关工作人员
+URL："/projectRelated/addRelatedEmp"
+Method：POST
+URL params{
+ "roleId"=1
+ "empId"=13
+ "projectId"=10
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "添加成功",
+}
+
+
+删除项目相关工作人员
+URL："/projectRelated/deleteRelatedEmp/{id}"
+Method：DELETE
+URL params{
+ "id"
+}
+{
+    "status": 0,
+    "body": null,
+    "message": "用户删除成功",
+}
+
+更新项目相关工作人员（有问题）
+URL："/projectRelated/editRelatedEmp"
+Method：POST
+URL params{
+  "id"=40
+  "roleId"=1
+  "empId"=13
+  "projectId"=10
+}
+{
+    "status": -1,
+    "body": null,
+    "message": "更新失败",
+}
+
+
+
+
+查询项目相关工作人员（分页）
+URL："/projectRelated/queryRelatedEmp"
+Method：POST
+URL params{
+ "pageSize"=2
+ "currentPage"=3
+}
+{
+    "status": 0,
+    "body": [
+        {
+            "id": 6,
+            "roleId": 3,
+            "empId": 15,
+            "projectId": 2,
+            "createDate": 1440997074000,
+            "lastModifyDate": 1440997082000
+        },
+        {
+            "id": 7,
+            "roleId": 3,
+            "empId": 14,
+            "projectId": 2,
+            "createDate": 1440997072000,
+            "lastModifyDate": 1440997080000
+        }
+    ],
+    "message": "查询成功",
+    "currentPage": 3,
+    "totalPage": 20
+}
+
+增加总包API
+	URL:"project/projectManagement/addTotalContract"
+	Method:POST
+	Request:Totalcontract_info
+	Response{
+	    "status":0,
+		"body":null,
+		"message":添加总包信息成功
+	}
+	
+	修改总包API
+	URL:"project/projectManagement/editTotalContract"
+	Method:POST
+	Request:Totalcontract_info
+	Response{
+	    "status":0,
+		"body":null,
+		"message":删除总包信息成功
+	}
+	删除总包API
+	URL:"project/projectManagement/deleteTotalContract/{id}
+	Method:POST
+	URL params:{
+    "id":4
+    }
+	Response{
+	    "status":0,
+		"body":null,
+		"message":删除总包信息成功
+	}
+	增加总包阶段API
+	URL:"project/projectManagement/addTotalContractSatge"
+	Method:POST
+	Request:Totalcontract_stage_info
+	Response{
+	    "status":0,
+		"body":null,
+		"message":添加阶段信息成功
+	}
+	
+	修改总包阶段API
+	URL:"project/projectManagement/editTotalContractSatge"
+	Method:POST
+	Request:Totalcontract_info
+	Response{
+	    "status":0,
+		"body":null,
+		"message":修改阶段信息成功
+	}
+	删除总包阶段API
+	URL:"project/projectManagement/deleteTotalContractStages/{contracStagetId}
+	Method:POST
+	URL params:{
+    "contracStagetId":4
+    }
+	Response{
+	    "status":0,
+		"body":null,
+		"message":删除阶段信息成功
+	}
+	
+	增加分包API
+	URL:"project/projectManagement/addSubContract"
+	Method:POST
+	Request:Subcontract_info
+	Response{
+	    "status":0,
+		"body":null,
+		"message":添加分包信息成功
+	}
+	
+	修改总包阶段API
+	URL:"project/projectManagement/updateSubContract"
+	Method:POST
+	Request:Subcontract_info
+	Response{
+	    "status":0,
+		"body":null,
+		"message":更新分包信息成功
+	}
+	删除总包阶段API
+	URL:"project/projectManagement/deleteSubContract/{id}
+	Method:POST
+	URL params:{
+    "id":4
+    }
+	Response{
+	    "status":0,
+		"body":null,
+		"message":删除分包信息成功
+	}
