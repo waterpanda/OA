@@ -4,6 +4,7 @@ $(function(){
     addProjectRelatedEmp();
     editorProjectRelatedEmp();
     backProjectRelatedEmp();
+    backSeeProjectDesign();
     saveProjectRelatedEmp();
 });
 function deleteProjectRelatedEmp(){
@@ -26,8 +27,10 @@ function deleteProjectRelatedEmp(){
 }
 
 function addProjectRelatedEmp(){
-    $(document).on("click",".add-projectRelatedEmp",function(){
-        location.href = "../../html/lyc/addProjectRelatedEmp.html";
+    $(document).on("click","#addProjectRelatedEmp",function(){
+        var thisHref=window.location.href;
+        var thisID=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "../../html/lyc/addProjectRelatedEmp.html?"+thisID;
     })
 }
 
@@ -112,12 +115,24 @@ function saveProjectRelatedEmp(){
 
 function backProjectRelatedEmp(){
     $(document).on("click","#back",function(){
-        location.href = "../../html/lyc/projectRelatedEmp.html";
+        var thisHref=window.location.href;
+        var thisID=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "../../html/lyc/projectRelatedEmp.html?"+thisID;
+    })
+}
+
+function backSeeProjectDesign(){
+    $(document).on("click","#backSeeProjectDesign",function(){
+        var thisHref=window.location.href;
+        var myId=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "../../html/lyc/nav.html?"+myId;
     })
 }
 
 function getAllProjectRelatedEmp(){
     $("th").addClass("text-center");
+    var thisHref=window.location.href;
+    var thisID=thisHref.substring(thisHref.indexOf("?")+1);
     //测试数据
     var projectRelatedEmp =
         [{
@@ -136,7 +151,7 @@ function getAllProjectRelatedEmp(){
             "lastModifyDate": 1440997080000
         }];
   // $.ajax({
-  //     url:"/projectRelated/queryRelatedEmp?pageSize=3&currentPage="+currentPage,
+  //     url:"http://localhost:8080/OA/projectRelated/queryRelatedEmpsById/"+thisID,
   //     type:"POST",
   //     contentType:"application/json",
   //     success:function(data){
@@ -152,7 +167,7 @@ function getAllProjectRelatedEmp(){
                     strHTML += "<td>" + el.projectId + "</td>";
                     strHTML += "<td>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
                     strHTML += "<td>"+ format(el.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td><button style='margin-bottom: 5px;margin-left:8px;' class='add-projectRelatedEmp btn btn-success btn-sm'>添加</button><button style='margin-bottom: 5px;margin-left:8px;' class='editor-projectRelatedEmp btn btn-warning btn-sm'>编辑</button><button style='margin-left:8px;' class='delect-projectRelatedEmp btn btn-danger btn-sm'>删除</button></td></tr>";
+                    strHTML += "<td><button style='margin-bottom: 5px;margin-left:8px;' class='editor-projectRelatedEmp btn btn-warning btn-sm'>编辑</button></td></tr>";
                 })
                 $("#all-user-mes").html(strHTML);
 //              addPagination(data.body.totalPage,data.body.currentPage);

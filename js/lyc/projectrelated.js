@@ -4,6 +4,7 @@ $(function(){
     addProjectRelated();
     editorProjectRelated();
     backProjectRelated();
+    backSeeProjectDesign();
     saveProjectRelated();
 });
 function deleteProjectRelated(){
@@ -26,8 +27,10 @@ function deleteProjectRelated(){
 }
 
 function addProjectRelated(){
-    $(document).on("click",".add-projectRelated",function(){
-        location.href = "../../html/lyc/addProjectRelated.html";
+    $(document).on("click","#addProjectRelated",function(){
+        var thisHref=window.location.href;
+        var thisID=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "../../html/lyc/addProjectRelated.html?"+thisID;
     })
 }
 
@@ -112,12 +115,24 @@ function saveProjectRelated(){
 
 function backProjectRelated(){
     $(document).on("click","#back",function(){
-        location.href = "../../html/lyc/projectRelated.html";
+        var thisHref=window.location.href;
+        var thisID=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "../../html/lyc/projectRelated.html?"+thisID;
+    })
+}
+
+function backSeeProjectDesign(){
+    $(document).on("click","#backSeeProjectDesign",function(){
+        var thisHref=window.location.href;
+        var myId=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "../../html/lyc/nav.html?"+myId;
     })
 }
 
 function getAllProjectRelated(){
     $("th").addClass("text-center");
+    var thisHref=window.location.href;
+    var thisID=thisHref.substring(thisHref.indexOf("?")+1);
     //测试数据
     var projectRelated =
         [{
@@ -127,16 +142,9 @@ function getAllProjectRelated(){
             "projectId": 2,
             "createDate": 1440997774000,
             "lastModifyDate": 1440997870000
-        },{
-            "id": 6,
-            "roleId": 3,
-            "partnerId": 2,
-            "projectId": 2,
-            "createDate": 1440997774000,
-            "lastModifyDate": 1440997870000
         }];
   // $.ajax({
-  //     url:"/projectRelated/queryStageInfo?pageSize=3&currentPage="+currentPage,
+  //     url:"http://localhost:8080/OA/projectRelated/queryRelatedPartnersById/"+thisID,
   //     type:"POST",
   //     contentType:"application/json",
   //     success:function(data){
@@ -152,10 +160,9 @@ function getAllProjectRelated(){
                     strHTML += "<td>" + el.projectId + "</td>";
                     strHTML += "<td>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
                     strHTML += "<td>"+ format(el.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td><button style='margin-bottom: 5px;margin-left:8px;' class='add-projectRelated btn btn-success btn-sm'>添加</button><button style='margin-bottom: 5px;margin-left:8px;' class='editor-projectRelated btn btn-warning btn-sm'>编辑</button><button style='margin-left:8px;' class='delect-projectRelated btn btn-danger btn-sm'>删除</button></td></tr>";
+                    strHTML += "<td><button style='margin-bottom: 5px;margin-left:8px;' class='editor-projectRelated btn btn-warning btn-sm'>编辑</button></td></tr>";
                 })
                 $("#all-user-mes").html(strHTML);
-//              addPagination(data.body.totalPage,data.body.currentPage);
 
   //          }
 //

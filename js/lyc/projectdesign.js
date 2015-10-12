@@ -7,6 +7,7 @@ $(function(){
     backProjectDesign();
     saveProjectDesign();
 });
+
 function deleteProjectDesign(){
     $(document).on("click",".delect-projectdesign",function(){
         $('#myModal').modal('toggle');
@@ -97,68 +98,8 @@ function editorProjectDesign(){
 
 function seeProjectDesign(){
     $(document).on("click",".see-projectdesign",function(){
-        var thisID = $(this).parents("tr").children(".id").html();
-        //伪造数据
-        var projectDesign=[{
-            "id": 3,
-            "projectName": "北京奥运会开幕式",
-            "buildingName": "北京奥运会",
-            "number": "165185496",
-            "isGoing": 0,
-            "description": "在北京五棵松",
-            "location": "鸟巢",
-            "area": "5464",
-            "scale": "4564346",
-            "datestart": 1407427200000,
-            "dateend": 1220112000000,
-            "image": "../../image/image.jpg",
-            "effectpic": "../../image/image.jpg",
-            "effectvideo": "/mp4/2015_09_28_14_59_17effectvideo爱情公寓 - 我的未来式.mp3",
-            "progress": "100",
-            "promessage": "现阶段是周成全权负责",
-            "grade": 4,
-            "createDate": 1440952400000,
-            "lastModifyDate": 1443423557000
-        }]
-        /*$.ajax({
-                type: "GET",
-                url: "company/getCompany/" + thisID, //这个链接是错误的
-                success: function (data) {
-                    if (data.status == 0) {
-                        var projectDesignData=eval(data.body);*/
-                        var projectDesignData=eval(projectDesign);
-                        $.each(projectDesignData,function(index,el){
-                            $("#inputProjectId").val(el.id);
-                            $("#inputProjectName").val(el.projectName);
-                            $("#inputBuildingName").val(el.buildingName);
-                            $("#inputNumbers").val(el.number);
-                            if(el.isgong=="1"){
-                                $(".yes").attr("selected","selected");
-                            }else{
-                                $(".no").attr("selected","selected");
-                            }
-                            $("#inputDescription").val(el.description);
-                            $("#inputLocation").val(el.location);
-                            $("#inputDateStart").val(el.datestart);
-                            $("#inputDateEnd").val(el.dateend);
-                            $("#inputProgress").val(el.progress);
-                            $("#inputProMessage").val(el.promessage);
-                            $("#inputArea").val(el.area);
-                            $("#inputScale").val(el.scale);
-                            $("#image").attr("src",el.image);
-                            $("#effectPic").attr("src",el.effectpic);
-                            $("#effectVideo").attr("src",el.effectvideo);
-                            $("#inputCreatTime").val(el.createDate);
-                            $("#inputLastModifyDate").val(el.lastModifyDate);
-                        })
-           /*         }
-                }
-        })*/
-        $(":input").attr("disabled","disabled");
-        $("#back").attr("disabled",false);
-        $(".main-content").css("display","none");
-        $(".editorProjectDesign").css("display","none");
-        $(".seeProjectDesign").css("display","block");
+        var myID = $(this).parents("tr").children(".id").html();
+        location.href = "../../html/lyc/seeProjectDesign.html?"+myID;
     })
 }
 
@@ -347,7 +288,7 @@ function getAllProjectDesign(){
                     strHTML += "<td><img class='image' src="+el.image+"></td>";
                     strHTML += "<td>" + el.progress+ "</td>";
                     strHTML += "<td>" + el.grade+ "</td>";
-                    strHTML += "<td><button style='margin-bottom: 10px;margin-right:10px;' class='see-projectdesign btn btn-info btn-sm'>查看</button><button style='margin-bottom: 10px' class='add-projectdesign btn btn-success btn-sm'>添加</button><button style='margin-bottom: 10px;margin-right:10px;' class='editor-projectdesign btn btn-warning btn-sm'>编辑</button><button style='margin-top:-10px;' class='delect-projectdesign btn btn-danger btn-sm'>删除</button></td></tr>";
+                    strHTML += "<td><button style='margin-bottom: 10px;' class='see-projectdesign btn btn-info btn-sm'>查看</button><button style='margin-bottom: 10px;' class='editor-projectdesign btn btn-warning btn-sm'>编辑</button><button class='delect-projectdesign btn btn-danger btn-sm'>删除</button></td></tr>";
                 })
                 $("#all-user-mes").html(strHTML);
 //              addPagination(data.body.totalPage,data.body.currentPage);

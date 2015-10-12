@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
     <!--加载css-->
     <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/lyc/addCompany.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lyc/projectdesign.css"/>
 </head>
 <body>
 <!--头部-->
@@ -48,41 +48,39 @@
         <li><span class="fa fa-ship"></span>外部管理
             <ul class="second-nav">
                 <li><a href="#">业务伙伴管理</a></li>
-                <li class="active"><a href="#">合作公司管理</a></li>
+                <li><a href="#">合作公司管理</a></li>
             </ul>
         </li>
         <li><span class="fa fa-ship"></span>项目管理
             <ul class="second-nav">
-                <li><a href="#">项目列表</a></li>
+                <li class="active"><a href="#">项目列表</a></li>
                 <li><a href="#">项目添加</a></li>
             </ul>
         </li>
     </ul>
     <!--这里放置个人的代码-->
-    <div class="main-content">
-        <form class="form-horizontal" role="form">
+    <div class="main-content contaner">
             <div class="form-group">
-                <label for="inputCompanyId" class="col-sm-2 control-label">合作公司ID<span>*</span></label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" id="inputCompanyId" placeholder="请输入合作公司名称">
+                <div class="col-sm-8">
+                    <button id="projectstage" type="button" class="btn btn-success btn-lg seeProjectDesign editorProjectDesign">项目阶段信息</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputCompanyName" class="col-sm-2 control-label">合作公司名称<span>*</span></label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" id="inputCompanyName" placeholder="请输入合作公司名称">
+                <div class="col-sm-8">
+                    <button id="projectrelated" type="button" class="btn btn-success btn-lg seeProjectDesign editorProjectDesign">项目合作伙伴</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputCompanyAdress" class="col-sm-2 control-label">合作公司地址<span>*</span></label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" id="inputCompanyAdress" placeholder="请输入合作公司地址">
+                <div class="col-sm-8">
+                    <button id="projectrelatedemp" type="button" class="btn btn-success btn-lg seeProjectDesign editorProjectDesign">项目相关工作人员</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-6">
-                    <button id="save" type="submit" class="btn btn-success">保存设置</button>
-                    <button id="back" type="button" class="btn btn-warning">返回上一页</button>
+                <div class="col-sm-8">
+                    <button id="totalcontract" type="button" class="btn btn-success btn-lg seeProjectDesign editorProjectDesign">项目总包</button>
+                </div>
+                <div class="col-sm-8">
+                    <button id="totalcontractstage" type="button" class="btn btn-success btn-lg seeProjectDesign editorProjectDesign">项目总包阶段</button>
+                </div>
+                <div class="col-sm-8">
+                    <button id="subcontract" type="button" class="btn btn-success btn-lg seeProjectDesign editorProjectDesign">项目分包</button>
+                </div>
+                <div class="col-sm-8">
+                    <button id="back" type="button" class="btn btn-warning btn-lg seeProjectDesign editorProjectDesign">返回上一页</button>
                 </div>
             </div>
         </form>
@@ -93,6 +91,7 @@
 <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
 <!--加载js-->
 <script type="text/javascript" src="../../js/common/base.js"></script>
-<script type="text/javascript" src="../../js/lyc/addCompany.js"></script>
+<script type="text/javascript" src="../../js/libs/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../../js/lyc/nav.js"></script>
 </body>
 </html>

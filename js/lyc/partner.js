@@ -3,6 +3,7 @@ $(function(){
     deletePartner();
     addPartner();
     editorPartner();
+    seePartner();
     backPartner();
     savePartner();
 });
@@ -25,7 +26,7 @@ function deletePartner(){
 }
 
 function addPartner(){
-    $(document).on("click",".add-partner",function(){
+    $(document).on("click","#addPartner",function(){
         location.href = "../../html/lyc/addPartner.html";
     })
 }
@@ -80,6 +81,62 @@ function editorPartner(){
         })*/
         $(".main-content").css("display","none");
         $("#editorPartner").css("display","block");
+    })
+}
+
+function seePartner(){
+    $(document).on("click",".see-partner",function(){
+        $(":input").attr("disabled","disabled");
+        $("#back").attr("disabled",false);
+        $(".main-content").css("display","none");
+        $("#save").css("display","none");
+        $("#editorPartner").css("display","block");
+        var thisID = $(this).parents("tr").children(".id").html();
+        var partner=[{
+             "id": 2,
+            "userId": 23,
+            "realname": "王铭",
+            "address": "河南",
+            "sex": "女",
+            "birthday": -410256000000,
+            "mobilephone": "34534",
+            "fixedphone": "3453",
+            "email": "234@qq.com",
+            "grade": 6,
+            "position": "总经理",
+            "companyId": 2,
+            "note": "河南建工的总经理",
+            "headimg": "../../image/image.jpg",
+            "createDate": 1440864856000,
+            "lastModifyDate": 1440864859000
+        }]
+        /*$.ajax({
+                type: "GET",
+                url: "company/getCompany/" + thisID,
+                success: function (data) {
+                    if (data.status == 0) {
+                        var partnerData=eval(data.body);*/
+                        var partnerData=eval(partner);
+                        $.each(partnerData,function(index,el){
+                            $("#inputId").val(el.id);
+                            $("#inputUserId").val(el.userId);
+                            $("#inputRealName").val(el.realname);
+                            $("#inputAdress").val(el.address);
+                            $("#inputEmpumber").val(el.empumber);
+                            if(el.sex=="男"){
+                                $(".man").attr("selected","selected");
+                            }else{
+                                $(".woman").attr("selected","selected");
+                            }
+                            $("#inputEmail").val(el.email);
+                            $("#inputBirthday").val(el.birthday);
+                            $("#inputMobilephone").val(el.mobilephone);
+                            $("#inputFixedphone").val(el.fixedphone);
+                            $("#headimg").attr("src",el.headimg);
+                        })
+           /*         }
+                }
+        })*/
     })
 }
 
@@ -224,20 +281,20 @@ function getAllPartner(){
                     strHTML += "<tr><td class='id' style='display: none'>+el.id +</td>";
                     strHTML += "<td class=userId' style='display: none'>" + el.userId+ "</td>";
                     strHTML += "<td>" + el.realname + "</td>";
-                    strHTML += "<td>"+el.address+"</td>";
+                    strHTML += "<td style='display:none;'>"+el.address+"</td>";
                     strHTML += "<td>" + el.sex + "</td>";
-                    strHTML += "<td>" + format(el.birthday, 'yyyy-MM-dd ') + "</td>";
+                    strHTML += "<td  style='display:none;'>" + format(el.birthday, 'yyyy-MM-dd ') + "</td>";
                     strHTML += "<td>" + el.mobilephone + "</td>";
                     strHTML += "<td>" + el.fixedphone + "</td>";
                     strHTML += "<td>" + el.email + "</td>";
                     strHTML += "<td>" + el.grade + "</td>";
                     strHTML += "<td>"+el.position +"</td>";
                     strHTML += "<td>" + el.companyId+ "</td>";
-                    strHTML += "<td>" + el.note+ "</td>";
+                    strHTML += "<td  style='display:none;'>" + el.note+ "</td>";
                     strHTML += "<td><img class='headImg' src="+el.headimg+"></td>";
-                    strHTML += "<td>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td>"+ format(el.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td><button style='margin-bottom: 5px' class='add-partner btn btn-success btn-sm'>添加</button><button style='margin-bottom: 5px' class='editor-partner btn btn-warning btn-sm'>编辑</button><button class='delect-partner btn btn-danger btn-sm'>删除</button></td></tr>";
+                    strHTML += "<td style='display:none;'>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
+                    strHTML += "<td style='display:none;'>"+ format(el.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
+                    strHTML += "<td><button style='margin-bottom: 5px' class='see-partner btn btn-success btn-sm'>查看</button><button style='margin-bottom: 5px' class='editor-partner btn btn-warning btn-sm'>编辑</button><button class='delect-partner btn btn-danger btn-sm'>删除</button></td></tr>";
                 })
                 $("#all-user-mes").html(strHTML);
   //              addPagination(data.body.totalPage,data.body.currentPage);

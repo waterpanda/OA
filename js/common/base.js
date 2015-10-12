@@ -39,15 +39,8 @@ function navChange() {
         location.href="../../html/lyc/projectdesign.html";
     })
     $(" .second-nav li:eq(9)").click(function(){
-        location.href="../../html/lyc/projectstage.html";
+        location.href="../../html/lyc/addProjectDesign.html";
     })
-    $(" .second-nav li:eq(10)").click(function(){
-        location.href="../../html/lyc/projectrelated.html";
-    })
-    $(" .second-nav li:eq(11)").click(function(){
-        location.href="../../html/lyc/projectrelatedemp.html";
-    })
-
 }
 
 

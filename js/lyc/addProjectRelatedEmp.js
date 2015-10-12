@@ -1,4 +1,8 @@
 $(function(){
+    //默认填入项目ID
+    var thisHref=window.location.href;
+    var thisID=thisHref.substring(thisHref.indexOf("?")+1);
+    $("#inputProjectId").val(thisID);
     //检查是否为空
     var inputBox=$(".form-group input");
     var check=0;
@@ -15,7 +19,9 @@ $(function(){
         }
     //返回上一级
     $("#back").bind("click",function(){
-        location.href = "projectrelatedemp.html";
+        var thisHref=window.location.href;
+        var myID=thisHref.substring(thisHref.indexOf("?")+1);
+        location.href = "projectrelatedemp.html?"+myID;
     })
     //注册提交事件
     $("#save").bind("click",function(){

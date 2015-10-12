@@ -26,7 +26,7 @@ function deleteCompany(){
 }
 
 function addCompany(){
-    $(document).on("click",".add-company",function(){
+    $(document).on("click","#addCompany",function(){
         location.href = "../../html/lyc/addCompany.html";
     })
 }
@@ -155,7 +155,7 @@ function getAllCompany(){
                     strHTML += "<td>"+el.address+"</td>";
                     strHTML += "<td>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
                     strHTML += "<td>"+ format(el.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td><button class='add-company btn btn-success btn-sm'>添加</button><button class='editor-company btn btn-warning btn-sm'>编辑</button><button class='delect-company btn btn-danger btn-sm'>删除</button></td></tr>";
+                    strHTML += "<td><button style='margin-bottom:10px;' class='editor-company btn btn-warning btn-sm'>编辑</button><button class='delect-company btn btn-danger btn-sm'>删除</button></td></tr>";
                 })
                 $("#all-user-mes").html(strHTML);
 //              addPagination(data.body.totalPage,data.body.currentPage);

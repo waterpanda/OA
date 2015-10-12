@@ -1,20 +1,20 @@
 $(function(){
-    getAllProjectStage();
-    deleteProjectStage();
-    editorProjectStage();
-    backProjectStage();
+    getAllTotalContract();
+    deleteTotalContract();
+    editorTotalContract();
+    backTotalContract();
     backProjectDesign();
-    saveProjectStage();
-    addProjectStage();
+    saveTotalContract();
+    addTotalContract();
 });
-function deleteProjectStage(){
-    $(document).on("click",".delect-projectStage",function(){
+function deleteTotalContract(){
+    $(document).on("click",".delect-totalcontract",function(){
         $('#myModal').modal('toggle');
         var thisID = $(this).parents("tr").children(".id").html();
         $(document).on("click","#confirm",function(){
             $.ajax({
                 type: "DELETE",
-                url: "/projectStage/deleteStageInfo/" + thisID,
+                url: "project/projectManagement/deleteTotalContract/" + thisID,
                 success: function (data) {
                     if (data.status == 0) {
                         alert("删除成功！");
@@ -26,49 +26,46 @@ function deleteProjectStage(){
     })
 }
 
-function editorProjectStage(){
-    $(document).on("click",".editor-projectStage",function(){
+function editorTotalContract(){
+    $(document).on("click",".editor-totalcontract",function(){
         var thisHref=window.location.href;
         var thisID=thisHref.substring(thisHref.indexOf("?")+1);
         //伪造数据
-        var projectStage=[{
+        var totalcontract=[{
             "id": 1,
-            "projectId": 1,
-            "stage": 1,
-            "message": "项目策划及审批",
-            "isFinished": 2,
-            "directorId": 17,
-            "createDate": 1440863963000,
-            "lastModifyDate": 1440863966000
+            "project_id": 2,
+            "status": 4,
+            "sequence": 2,
+            "title": "项目建议书",
+            "level": 1,
+            "parent_id": 1,
+            "dateStart": 2015-08-07,
+            "dateEnd": 2015-09-06
         }]
         /*$.ajax({
                 type: "GET",
-                url: "http://localhost:8080/OA/projectStage/queryStageInfoById/" + thisID, 
+                url: "project/projectManagement/getTotalContractId/" + thisID, 
                 success: function (data) {
                     if (data.status == 0) {
-                        var projectStageData=eval(data.body);*/
-                        var projectStageData=eval(projectStage);
-                        $.each(projectStageData,function(index,el){
+                        var totalContractData=eval(data.body);*/
+                        var totalContractData=eval(totalcontract);
+                        $.each(totalContractData,function(index,el){
                             $("#inputId").val(el.id);
-                            $("#inputProjectId").val(el.projectId);
-                            $("#inputStage").val(el.stage);
-                            $("#inputMessage").val(el.message);
-                            if(el.isFinished=="1"){
-                                $(".yes").attr("selected","selected");
-                            }else{
-                                $(".no").attr("selected","selected");
-                            }
-                            $("#inputDirectorId").val(el.directorId);
+                            $("#inputProjectId").val(el.project_id);
+                            $("#inputStatus").val(el.status);
+                            $("#inputSequence").val(el.sequence);
+                            $("#inputTitle").val(el.title);
+                            $("#inputLevel").val(el.level);
                         })
            /*         }
                 }
         })*/
         $(".main-content").css("display","none");
-        $(".editorProjectStage").css("display","block");
+        $(".editorTotalContract").css("display","block");
     })
 }
 
-function saveProjectStage(){
+function saveTotalContract(){
     //检查是否为空
     var inputBox=$(".form-group input");
     var textAreaBox=$(".form-group textarea");
@@ -97,11 +94,11 @@ function saveProjectStage(){
     $(document).on("click","#save",function(){
         var user={
             id:$("#inputId").val(),
-            projectId:$("#inputProjectId").val(),
-            stage:$("#inputStage").val(),
-            isFinished:$("#isFinished").val(),
-            message:$("#inputMessage").val(),
-            directorId:$("#inputDirectorId").val()
+            project_id:$("#inputProjectId").val(),
+            status:$("#inputStatus").val(),
+            sequence:$("#inputSequence").val(),
+            title:$("#inputTitle").val(),
+            level:$("#inputLevel").val()
 
         };
         for(var i=0;i<inputBox.length;i++){
@@ -113,7 +110,7 @@ function saveProjectStage(){
             return false;
         };
         $.ajax({
-            url:"/projectStage/editStageInfo",
+            url:"project/projectManagement/editTotalContract",
             type:"POST",
             contentType:"application/json",
             data:JSON.stringify(user),
@@ -125,19 +122,19 @@ function saveProjectStage(){
         });
     });
 }
-function addProjectStage(){
-    $(document).on("click","#addprojectstage",function(){
+function addTotalContract(){
+    $(document).on("click","#addTotalContract",function(){
         var thisHref=window.location.href;
         var thisID=thisHref.substring(thisHref.indexOf("?")+1);
-        location.href = "../../html/lyc/addProjectStage.html?"+thisID;
+        location.href = "../../html/lyc/addTotalContract.html?"+thisID;
     })
 }
 
-function backProjectStage(){
+function backTotalContract(){
     $(document).on("click","#back",function(){
         var thisHref=window.location.href;
         var thisID=thisHref.substring(thisHref.indexOf("?")+1);
-        location.href = "../../html/lyc/projectstage.html?"+thisID;
+        location.href = "../../html/lyc/nav.html?"+thisID;
     })
 }
 
@@ -145,60 +142,48 @@ function backProjectDesign(){
     $(document).on("click","#backprojectdesign",function(){
         var thisHref=window.location.href;
         var thisID=thisHref.substring(thisHref.indexOf("?")+1);
-        location.href = "../../html/lyc/nav.html?"+thisID;
+        location.href = "../../html/lyc/seeProjectDesign.html?"+thisID;
     })
 }
 
-function getAllProjectStage(){
+function getAllTotalContract(){
     $("th").addClass("text-center");
     var thisHref=window.location.href;
     var thisID=thisHref.substring(thisHref.indexOf("?")+1);
     //测试数据
-    var projectStage =
+    var totalcontract =
         [{
             "id": 1,
-            "projectId": 1,
-            "stage": 1,
-            "message": "项目策划及审批",
-            "isFinished": 2,
-            "directorId": 17,
-            "createDate": 1440863963000,
-            "lastModifyDate": 1440863966000
-        },{
-            "id": 2,
-            "projectId": 1,
-            "stage": 2,
-            "message": "方案设计及施工图纸设计",
-            "isFinished": 2,
-            "directorId": 13,
-            "createDate": 1440863968000,
-            "lastModifyDate": 1440863971000
+            "project_id": 2,
+            "status": 4,
+            "sequence": 2,
+            "title": "项目建议书",
+            "level": 1,
+            "parent_id": 1,
+            "dateStart": 2015-08-07,
+            "dateEnd": 2015-09-06
         }];
   // $.ajax({
-  //     url:"http://localhost:8080/OA/projectStage/queryStageInfoById/"+thisID,
+  //     url:"project/projectManagement/getTotalContractId/"+thisID,
   //     type:"POST",
   //     contentType:"application/json",
   //     success:function(data){
   //         if(data.status == 0){
   //           //  var userData = eval(data.body);
                 var strHTML="";
-                var projectStageData = eval(projectStage);
-                $.each(projectStageData, function (index, el) {
+                var totalContractData = eval(totalcontract);
+                $.each(totalContractData, function (index, el) {
                    // var url = el.pictureObj ? el.pictureObj.url : '';
                     strHTML += "<tr>"+"<td style='display:none;' class='id'>"+ el.id +"</td>";
-                    strHTML += "<td>" + el.projectId +"</td>";
-                    if(el.isFinished==1){
-                        var finish="是";
-                    }else{
-                        finish="否";
-                    }
-                    strHTML += "<td>" + el.stage+ "</td>";
-                    strHTML += "<td>" + el.message + "</td>";
-                    strHTML += "<td>" + finish+ "</td>";
-                    strHTML += "<td>" + el.directorId+ "</td>";
-                    strHTML += "<td style='display:none;'>"+ format(el.createDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td style='display:none;'>"+ format(el.lastModifyDate, 'yyyy-MM-dd HH:mm:ss')+"</td>"
-                    strHTML += "<td><button style='margin-bottom: 5px;margin-left:8px;' class='editor-projectStage btn btn-warning btn-sm'>编辑</button><button style='margin-left:8px;' class='delect-projectStage btn btn-danger btn-sm'>删除</button></td></tr>";
+                    strHTML += "<td>" + el.project_id +"</td>";
+                    strHTML += "<td>" + el.status+ "</td>";
+                    strHTML += "<td>" + el.sequence + "</td>";
+                    strHTML += "<td>" + el.title+ "</td>";
+                    strHTML += "<td>" + el.level+ "</td>";
+                    strHTML += "<td style='display:none;'>" + el.parent_id+ "</td>";
+                    strHTML += "<td style='display:none;'>"+ format(el.dateStart, 'yyyy-MM-dd HH:mm:ss')+"</td>"
+                    strHTML += "<td style='display:none;'>"+ format(el.dateEnd, 'yyyy-MM-dd HH:mm:ss')+"</td>"
+                    strHTML += "<td><button style='margin-bottom: 5px;margin-left:8px;' class='editor-totalcontract btn btn-warning btn-sm'>编辑</button><button style='margin-left:8px;' class='delect-totalcontract btn btn-danger btn-sm'>删除</button></td></tr>";
                 })
                 $("#all-user-mes").html(strHTML);
 //              addPagination(data.body.totalPage,data.body.currentPage);

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/libs/bootstrap.min.css"/>
     <!--加载css-->
     <link rel="stylesheet" type="text/css" href="../../css/common/base.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/lyc/projectrelated.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/lyc/addPartner.css"/>
 </head>
 <body>
 <!--头部-->
@@ -60,55 +60,45 @@
     </ul>
     <!--这里放置个人的代码-->
     <div class="main-content">
-        <div class="main-wrapper table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                <tr class="warning">
-                    <th style="display:none;">ID</th>
-                    <th>角色ID</th>
-                    <th>合作伙伴ID</th>
-                    <th>项目工程ID</th>
-                    <th>创建日期</th>
-                    <th>最后修改日期</th>
-                    <th style="width:80px;">管理</th>
-                </tr>
-                </thead>
-                <tbody id="all-user-mes">
-                </tbody>
-            </table>
+         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-7">
-                    <button id="addProjectRelated" type="button" class="btn btn-success" style="margin-left:50px;">添加合作伙伴</button>
-                    <button id="backSeeProjectDesign" type="button" class="btn btn-warning" style="margin-left:20px;">返回上一页</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--编辑模块-->
-    <div class="main-content editorProjectRelated" style="display:none;">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="inputId" class="col-sm-2 control-label">ID</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" id="inputId" disabled>
+                <label for="inputProjectId" class="col-sm-2 control-label">项目ID</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputProjectId" placeholder="请输入项目ID" disabled>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputRoleId" class="col-sm-2 control-label">角色ID</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" id="inputRoleId" placeholder="请输入角色ID" disabled>
+                <label for="inputTotalContractId" class="col-sm-2 control-label">项目总包ID</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputTotalContractId"  placeholder="请输入项目总包ID">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPartnerId" class="col-sm-2 control-label">合作伙伴ID</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" id="inputPartnerId"  placeholder="请输入合作伙伴ID">
+                <label for="inputStage" class="col-sm-2 control-label">阶段</label>
+                <div class="col-sm-6">
+                  <input rows="3" class="form-control" id="inputStage" placeholder="请输入阶段">                
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputProjectId" class="col-sm-2 control-label">项目工程ID</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" id="inputProjectId" placeholder="请输入项目工程ID">
+                <label for="inputMessage" class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputMessage" placeholder="请输入备注">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">是否完成</label>
+                <div class="col-sm-2">
+                    <select id="isFinished" class="form-control"> 
+                        <option class="yes" value="3">完成</option>
+                        <option class="doing" value="2">正在进行</option> 
+                        <option class="no" value="1">未完成</option>  
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDirectorId" class="col-sm-2 control-label">负责人ID</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputDirectorId" placeholder="请输入负责人ID">
                 </div>
             </div>
             <div class="form-group">
@@ -125,6 +115,6 @@
 <script type="text/javascript" src="../../js/libs/bootstrap.min.js"></script>
 <!--加载js-->
 <script type="text/javascript" src="../../js/common/base.js"></script>
-<script type="text/javascript" src="../../js/lyc/projectrelated.js"></script>
+<script type="text/javascript" src="../../js/lyc/addTotalContract.js"></script>
 </body>
 </html>
